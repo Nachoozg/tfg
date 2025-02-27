@@ -1,0 +1,43 @@
+<app-navbar></app-navbar>
+jugadores
+<!-- <div class="container">
+    <div class="row mt-3">
+        <div class="col-lg-6">
+            <h3 class="mt-5">Listado de Jugadores</h3>
+        </div>
+        <div class="col-lg-6">
+            <button class="sae-btn--green sae-btn--l float-end" routerLink="/agregarJugador">Inscribir Nuevo Jugador</button>
+        </div>
+    </div>
+    
+    <table *ngIf="listJugadores.length > 0" class="table table-hover mt-3">
+        <thead>
+            <tr>
+                <td> <strong>Nombre</strong> </td>
+                <td> <strong>Posición</strong></td>
+                <td> <strong>Equipo</strong></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let jugador of listJugadores">
+                <td>
+                    <a [routerLink]="['/verJugador', jugador.id]"> {{ jugador.nombre }} {{ jugador.apellidos }} </a> 
+                </td>
+                <td>{{ jugador.posicion }}</td>
+                <td>{{ equipos[jugador.equipoId] }}</td>
+                <td style="width: 10%;">
+                    <button [routerLink]="['/editarJugador', jugador.id]" class="sae-btn--one sae-btn--m">Editar</button>
+                </td>
+                <td style="width: 10%;">
+                    <button (click)="eliminarJugador(jugador.id)" class="sae-btn--red sae-btn--m">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div *ngIf="listJugadores.length == 0" class="row mt-5">
+        <h5>No hay jugadores para mostrar</h5>
+    </div>
+</div> -->

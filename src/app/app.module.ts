@@ -5,17 +5,25 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InicioComponent } from './inicio/inicio.component';
 
-import { SharedModule } from './shared/shared.module';
+import { NavbarComponent } from './navbar/navbar.component';
+import { ListColegiosComponent } from './list-colegios/list-colegios.component';
+import { ListClasificacionComponent } from './list-clasificacion/list-clasificacion.component';
+import { ListJugadoresComponent } from './list-jugadores/list-jugadores.component';
+import { ListPartidosComponent } from './list-partidos/list-partidos.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    InicioComponent
+    InicioComponent,
+    NavbarComponent,
+    ListColegiosComponent,
+    ListClasificacionComponent,
+    ListJugadoresComponent,
+    ListPartidosComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    SharedModule
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
