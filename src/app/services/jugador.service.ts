@@ -8,8 +8,8 @@ import { jugador } from '../interfaces/jugador';
 })
 export class JugadorService {
 
-  private myAppUrl = 'https://localhost:44314/';
-  private myApiUrl = 'api/jugador/';
+  private myAppUrl = 'https://localhost:44372/';
+  private myApiUrl = 'api/Jugador/';
 
   constructor(private http: HttpClient) { }
 

@@ -13,27 +13,27 @@ import { ColegioService } from '../services/colegio.service';
   styleUrl: './list-jugadores.component.css'
 })
 export class ListJugadoresComponent implements OnInit {
-  // listJugadores: jugador[] = [];
+  listJugadores: jugador[] = [];
   // equipos: { [id: number]: string } = {};
 
-  // constructor(
-  //   private _jugadorService: JugadorService,
-  //   private _colegioService: ColegioService,
-  //   private toastr: ToastrService
-  // ) { }
+  constructor(
+    private _jugadorService: JugadorService,
+    // private _colegioService: ColegioService,
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit(): void {
-    // this.getJugadores();
+    this.getJugadores();
   }
 
-  // getJugadores() {
-  //   this._jugadorService.getListJugadores().subscribe(data => {
-  //     this.listJugadores = data;
-  //     this.cargarEquipos();
-  //   }, error => {
-  //     console.log(error);
-  //   });
-  // }
+  getJugadores() {
+    this._jugadorService.getListJugadores().subscribe(data => {
+      this.listJugadores = data;
+      // this.cargarEquipos();
+    }, error => {
+      console.log(error);
+    });
+  }
 
   // cargarEquipos() {
   //   this.listJugadores.forEach(jugador => {
@@ -47,13 +47,13 @@ export class ListJugadoresComponent implements OnInit {
   //   });
   // }
 
-  // eliminarJugador(id: any) {
-  //   console.log(id);
-  //   this._jugadorService.deleteJugador(id).subscribe(data => {
-  //     this.getJugadores();
-  //     this.toastr.success('Jugador eliminado con exito', 'Jugador Eliminado');
-  //   }, error => {
-  //     console.log(error);
-  //   });
-  // }
+  eliminarJugador(id: any) {
+    console.log(id);
+    this._jugadorService.deleteJugador(id).subscribe(data => {
+      this.getJugadores();
+      this.toastr.success('Jugador eliminado con exito', 'Jugador Eliminado');
+    }, error => {
+      console.log(error);
+    });
+  }
 }

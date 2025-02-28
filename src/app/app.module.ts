@@ -4,12 +4,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InicioComponent } from './inicio/inicio.component';
+import { ToastrModule } from 'ngx-toastr';
 
 import { NavbarComponent } from './navbar/navbar.component';
 import { ListColegiosComponent } from './list-colegios/list-colegios.component';
 import { ListClasificacionComponent } from './list-clasificacion/list-clasificacion.component';
 import { ListJugadoresComponent } from './list-jugadores/list-jugadores.component';
 import { ListPartidosComponent } from './list-partidos/list-partidos.component';
+
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +27,9 @@ import { ListPartidosComponent } from './list-partidos/list-partidos.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

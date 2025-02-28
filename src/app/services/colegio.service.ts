@@ -8,8 +8,8 @@ import { colegio } from '../interfaces/colegio';
 })
 export class ColegioService {
 
-  private myAppUrl = 'https://localhost:44314/';
-  private myApiUrl = 'api/colegio/';
+  private myAppUrl = 'https://localhost:44372/';
+  private myApiUrl = 'api/Colegio/';
 
   constructor(private http: HttpClient) { }
 
