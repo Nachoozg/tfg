@@ -1,0 +1,31 @@
+<app-navbar></app-navbar>
+<div class="container text-center">
+    <div *ngIf="partido !== undefined">
+        <h3 class="mt-5">{{ partido.fecha | date: "dd/MM/yyyy"}}
+            <!-- <span>
+                {{ partido.nombreLocal }} vs {{ partido.nombreVisitante }}
+            </span> -->
+        </h3>
+        <hr>
+        <h5 class="mb-5">Partido de baloncesto</h5>
+        <div>
+            <ul>
+                <li class="mb-2"> <strong>Fecha:</strong> {{ partido.fecha | date: "dd/MM/yyyy" }} </li>
+                <li class="mb-2"> <strong>Lugar: </strong> {{ partido.lugar }} </li>
+                <li class="mb-2"> <strong>Detalles: </strong> {{ partido.detalles }} </li>
+                <!-- <li class="mb-2"> <strong>Resultado: </strong> 
+                    <span *ngIf="partido.resultadoLocal !== null && partido.resultadoVisitante !== null">
+                        {{ partido.nombreLocal }} {{ partido.resultadoLocal }} - {{ partido.nombreVisitante }} {{ partido.resultadoVisitante }}
+                    </span>
+                    <span *ngIf="partido.resultadoLocal === null || partido.resultadoVisitante === null">
+                        Partido no jugado aún
+                    </span>
+                </li> -->
+            </ul>
+        </div>
+        
+        <div class="text-center">
+            <button type="button" routerLink="/Partidos" class="volver btn btn-secondary">Volver</button>
+        </div>
+    </div>
+</div>

@@ -1,2 +1,57 @@
 <app-navbar></app-navbar>
-<p>list-partidos works!</p>
+<div class="container">
+  <div class="row mt-3">
+    <div class="col-lg-6">
+      <h3 class="mt-5">Listado de Partidos</h3>
+    </div>
+    <div class="col-lg-6">
+      <button class="btn btn-success float-end" routerLink="/agregarPartido">Nuevo Partido</button>
+    </div>
+  </div>
+  
+  <table *ngIf="listPartidos.length > 0" class="table table-hover mt-3">
+    <thead>
+      <tr>
+        <td><strong>Fecha</strong></td>
+        <td><strong>Lugar</strong></td>
+        <td><strong>Detalles</strong></td>
+        <!-- <td><strong>Resultado</strong></td> -->
+        <td></td>
+        <td></td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let partido of listPartidos">
+        <td>
+          <a [routerLink]="['/verPartido', partido.id]">
+            {{ partido.fecha | date: "dd/MM/yyyy" }}
+          </a>
+        </td>
+        <td>{{ partido.lugar }}</td>
+        <td>{{ partido.detalles }}</td>
+        <!-- <td>
+          <span *ngIf="partido.resultadoLocal != null && partido.resultadoVisitante != null">
+            {{ partido.resultadoLocal }} - {{ partido.resultadoVisitante }}
+          </span>
+          <span *ngIf="partido.resultadoLocal == null || partido.resultadoVisitante == null">
+            Partido no jugado aún
+          </span>
+        </td> -->
+        <td style="width: 10%;">
+          <button [routerLink]="['/editarPartido', partido.id]" class="btn btn-primary">
+            Editar
+          </button>
+        </td>
+        <td style="width: 10%;">
+          <button (click)="eliminarPartido(partido.id)" class="btn btn-danger">
+            Eliminar
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="listPartidos.length == 0" class="row mt-5">
+    <h5>No hay jugadores para mostrar</h5>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<app-navbar></app-navbar>
+<div class="container text-center">
+    <div *ngIf="colegio !== undefined">
+        <h3 class="mt-5">{{ colegio.nombre }}</h3>
+        <hr>
+        <h5 class="mb-5">Equipo de baloncesto</h5>
+        <div>
+            <ul>
+                <li class="mb-2"> <strong>Nombre:</strong> {{ colegio.nombre }} </li>
+                <li class="mb-2"> <strong>Numero de Jugadores: </strong> {{ colegio.numeroJugadores }} </li>
+            </ul>
+        </div>
+        
+        <div class="text-center">
+            <button type="button" routerLink="/Colegios" class="volver btn btn-secondary">Volver</button>
+        </div>
+    
+    </div>
+</div>

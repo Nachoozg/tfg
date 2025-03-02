@@ -12,31 +12,31 @@ import { JugadorService } from '../services/jugador.service';
 })
 export class ListColegiosComponent implements OnInit {
 
-  // listColegios: colegio[] = [];
+  listColegios: colegio[] = [];
   // jugadores: jugador[] = []; // Para almacenar la lista de jugadores
 
-  // constructor(
-  //   private _colegioService: ColegioService,
-  //   // private _jugadorService: JugadorService, // Inyectamos el servicio de jugadores
-  //   private toastr: ToastrService
-  // ) { }
+  constructor(
+    private _colegioService: ColegioService,
+    // private _jugadorService: JugadorService, // Inyectamos el servicio de jugadores
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit(): void {
-    // this.getEquipos();
+    this.getEquipos();
     // this.getJugadores(); // Obtener los jugadores al iniciar el componente
   }
 
-  // // Obtener la lista de equipos
-  // getEquipos() {
-  //   this._colegioService.getListColegios().subscribe(data => {
-  //     this.listColegios = data;
-  //     // this.actualizarNumeroJugadores(); // Actualizamos el número de jugadores después de obtener los equipos
-  //   }, error => {
-  //     console.log(error);
-  //   });
-  // }
+  // Obtener la lista de equipos
+  getEquipos() {
+    this._colegioService.getListColegios().subscribe(data => {
+      this.listColegios = data;
+      // this.actualizarNumeroJugadores(); // Actualizamos el número de jugadores después de obtener los equipos
+    }, error => {
+      console.log(error);
+    });
+  }
 
-  // // Obtener la lista de jugadores
+  // Obtener la lista de jugadores
   // getJugadores() {
   //   this._jugadorService.getListJugadores().subscribe(data => {
   //     this.jugadores = data;
@@ -54,14 +54,14 @@ export class ListColegiosComponent implements OnInit {
   //   });
   // }
 
-  // // Eliminar equipo
-  // eliminarEquipo(id: any) {
-  //   console.log(id);
-  //   this._colegioService.deleteColegio(id).subscribe(data => {
-  //     this.getEquipos();
-  //     this.toastr.success('Equipo Eliminado con exito', 'Registro Eliminado');
-  //   }, error => {
-  //     console.log(error);
-  //   });
-  // }
+  // Eliminar equipo
+  eliminarEquipo(id: any) {
+    console.log(id);
+    this._colegioService.deleteColegio(id).subscribe(data => {
+      this.getEquipos();
+      this.toastr.success('Equipo Eliminado con exito', 'Registro Eliminado');
+    }, error => {
+      console.log(error);
+    });
+  }
 }

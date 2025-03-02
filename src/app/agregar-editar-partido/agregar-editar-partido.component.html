@@ -1,0 +1,64 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <h3 class="mt-5 mb-5">{{ accion }} partido</h3>
+    <form [formGroup]="agregarPartido" (ngSubmit)="agregarEditarPartido()">
+        <div class="mb-3">
+            <label for="fecha" class="form-label">Fecha</label>
+            <input formControlName="fecha" type="date" class="form-control" id="fecha" placeholder="Añadir Fecha">
+            <span *ngIf="agregarPartido.get('fecha')?.invalid && agregarPartido.get('fecha')?.touched" class="text-danger">
+                La <strong>fecha</strong> es obligatoria.
+            </span>
+        </div>
+        <div class="mb-3">
+            <label for="lugar" class="form-label">Lugar</label>
+            <input formControlName="lugar" type="text" class="form-control" id="lugar" placeholder="Añadir Lugar">
+            <span *ngIf="agregarPartido.get('lugar')?.invalid && agregarPartido.get('lugar')?.touched" class="text-danger">
+                El <strong>lugar</strong> es obligatorio.
+            </span>
+        </div>
+        <div class="mb-3">
+            <label for="detalles" class="form-label">Detalles</label>
+            <input formControlName="detalles" type="text" class="form-control" id="detalles" placeholder="Añadir Detalles">
+            <span *ngIf="agregarPartido.get('detalles')?.invalid && agregarPartido.get('detalles')?.touched" class="text-danger">
+                Es obligatorio rellenar los <strong>detalles</strong>.
+            </span>
+        </div>
+
+        <!-- <div class="mb-3">
+            <label for="localId" class="form-label">Equipo local</label>
+            <select formControlName="localId" class="form-control" id="localId">
+                <option value="">Seleccionar equipo local</option>
+                <option *ngFor="let equipo of equipos" [value]="equipo.id">{{ equipo.nombre }}</option>
+            </select>
+            <span *ngIf="agregarPartido.get('localId')?.invalid && agregarPartido.get('localId')?.touched" class="text-danger">
+                Es obligatorio seleccionar el equipo <strong>local</strong>.
+            </span>
+        </div>
+
+        <div class="mb-3">
+            <label for="visitanteId" class="form-label">Equipo visitante</label>
+            <select formControlName="visitanteId" class="form-control" id="visitanteId">
+                <option value="">Seleccionar equipo visitante</option>
+                <option *ngFor="let equipo of equipos" [value]="equipo.id">{{ equipo.nombre }}</option>
+            </select>
+            <span *ngIf="agregarPartido.get('visitanteId')?.invalid && agregarPartido.get('visitanteId')?.touched" class="text-danger">
+                Es obligatorio seleccionar el equipo <strong>visitante</strong>.
+            </span>
+        </div>
+
+        <div *ngIf="accion === 'Editar' && partidoPasado">
+            <div class="mb-3">
+                <label for="resultadoLocal" class="form-label">Resultado Equipo Local</label>
+                <input formControlName="resultadoLocal" type="number" class="form-control" id="resultadoLocal" placeholder="Ingrese el resultado del equipo local">
+            </div>
+            <div class="mb-3">
+                <label for="resultadoVisitante" class="form-label">Resultado Equipo Visitante</label>
+                <input formControlName="resultadoVisitante" type="number" class="form-control" id="resultadoVisitante" placeholder="Ingrese el resultado del equipo visitante">
+            </div>
+        </div> -->
+  
+
+        <button type="submit" [disabled]="agregarPartido.invalid" class="btn btn-success float-end">Aceptar</button>
+        <button type="button" routerLink="/Partidos" class="btn btn-secondary">Volver</button>
+    </form>
+</div>

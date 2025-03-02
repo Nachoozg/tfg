@@ -1,11 +1,11 @@
 <app-navbar></app-navbar>
-<!-- <div class="container">
+<div class="container">
     <div class="row mt-3">
         <div class="col-lg-6">
-            <h3 class="mt-5">Listado de Equipos</h3>
+            <h3 class="mt-5">Listado de Colegios</h3>
         </div>
         <div class="col-lg-6">
-            <button class="sae-btn--green sae-btn--l float-end" routerLink="/agregarEquipo">Nuevo equipo</button>
+            <button class="btn btn-success float-end" routerLink="/agregarColegio">Nuevo colegio</button>
         </div>
     </div>
     
@@ -13,32 +13,28 @@
         <thead>
             <tr>
                 <td> <strong>Nombre</strong> </td>
-                <td> <strong>Empresa</strong> </td>
-                <td> <strong>País</strong> </td>
-                <td> <strong>Jugadores</strong> </td>
+                <td> <strong>Número de Jugadores</strong> </td>
                 <td></td>
                 <td></td>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let equipo of listColegios">
+            <tr *ngFor="let colegio of listColegios">
                 <td>
-                    <a [routerLink]="['/verEquipo', equipo.id]"> {{ equipo.nombre }} </a> 
+                    <a [routerLink]="['/verColegio', colegio.id]"> {{ colegio.nombre }} </a> 
                 </td>
-                <td>{{ equipo.empresa }}</td>
-                <td>{{ equipo.pais }}</td>
-                <td>{{ equipo.numeroJugadores }}</td>
+                <td>{{ colegio.numeroJugadores }}</td>
                 <td style="width: 10%;">
-                    <button [routerLink]="['/editarEquipo', equipo.id]" class="sae-btn--one sae-btn--m">Editar</button>
+                    <button [routerLink]="['/editarColegio', colegio.id]" class="btn btn-primary">Editar</button>
                 </td>
                 <td style="width: 10%;">
-                    <button (click)="eliminarEquipo(equipo.id)" class="sae-btn--red sae-btn--m">Eliminar</button>
+                    <button (click)="eliminarEquipo(colegio.id)" class="btn btn-danger">Eliminar</button>
                 </td>
             </tr>
         </tbody>
     </table>
 
     <div *ngIf="listColegios.length == 0" class="row mt-5">
-        <h5>No hay equipos para mostrar</h5>
+        <h5>No hay colegios para mostrar</h5>
     </div>
-</div> -->
+</div>

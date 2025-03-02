@@ -1,0 +1,36 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <h3 class="mt-5 mb-">{{ accion }} jugador</h3>
+    <form [formGroup]="agregarJugador" (ngSubmit)="agregarEditarJugador()">
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input formControlName="nombre" type="text" class="form-control" id="nombre" placeholder="Añadir Nombre">
+            <span *ngIf="agregarJugador.get('nombre')?.invalid && agregarJugador.get('nombre')?.touched" class="text-danger">
+                El <strong>nombre</strong> es obligatorio.
+            </span>
+        </div>
+        <div class="mb-3">
+            <label for="apellidos" class="form-label">Apellidos</label>
+            <input formControlName="apellidos" type="text" class="form-control" id="apellidos" placeholder="Añadir Apellidos">
+            <span *ngIf="agregarJugador.get('apellidos')?.invalid && agregarJugador.get('apellidos')?.touched" class="text-danger">
+                Los <strong>apellidos</strong> son obligatorios.
+            </span>
+        </div>
+        <div class="mb-3">
+            <label for="edad" class="form-label">Edad</label>
+            <input formControlName="edad" class="form-control" id="edad" placeholder="Añadir Edad del Jugador">
+            <span *ngIf="agregarJugador.get('edad')?.invalid && agregarJugador.get('edad')?.touched" class="text-danger">
+                Es obligatorio rellenar la <strong>edad del jugador</strong>.
+            </span>
+        </div>
+        <div class="mb-3">
+            <label for="equipo" class="form-label">Equipo</label>
+            <select formControlName="equipo" class="form-control" id="equipo">
+                <option *ngFor="let equipo of listColegios; let index = index" [value]="listColegios[index].id">{{equipo.nombre}}</option>
+            </select>
+        </div>
+        
+        <button type="submit" [disabled]="agregarJugador.invalid" class="btn btn-success float-end">Aceptar</button>
+        <button type="button" routerLink="/Jugadores" class="btn btn-secondary">Volver</button>
+    </form>
+</div>

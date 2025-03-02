@@ -1,0 +1,22 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <h3 class="mt-5 mb-5">{{ accion }} colegio</h3>
+    <form [formGroup]="agregarColegio" (ngSubmit)="agregarEditarEquipo()">
+        <div class="mb-5">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input formControlName="nombre" type="text" class="form-control" id="nombre" placeholder="Añadir Nombre">
+            <span *ngIf="agregarColegio.get('nombre')?.invalid && agregarColegio.get('nombre')?.touched" class="text-danger">
+                El <strong>nombre</strong> es obligatorio.
+            </span>
+        </div>
+        <div class="mb-3">
+            <label for="numeroJugadores" class="form-label">Número de Jugadores</label>
+            <input formControlName="numeroJugadores" class="form-control" id="numeroJugadores" placeholder="Añadir Número de Jugadores">
+            <span *ngIf="agregarColegio.get('numeroJugadores')?.invalid && agregarColegio.get('numeroJugadores')?.touched" class="text-danger">
+                Es obligatorio rellenar el <strong>número de jugadores</strong>.
+            </span>
+        </div>
+        <button type="submit" [disabled]="agregarColegio.invalid" class="btn btn-success float-end mt-5">Aceptar</button>
+        <button type="button" routerLink="/Colegios" class="btn btn-secondary mt-5">Volver</button>
+    </form>
+</div>
