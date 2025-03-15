@@ -24,28 +24,29 @@
             </span>
         </div>
 
-        <!-- <div class="mb-3">
-            <label for="localId" class="form-label">Equipo local</label>
+        <div class="mb-3">
+            <label for="localId" class="form-label">Colegio local</label>
             <select formControlName="localId" class="form-control" id="localId">
-                <option value="">Seleccionar equipo local</option>
-                <option *ngFor="let equipo of equipos" [value]="equipo.id">{{ equipo.nombre }}</option>
+                <option value="">Seleccionar colegio local</option>
+                <option *ngFor="let colegio of colegios" [value]="colegio.id">{{ colegio.nombre }}</option>
             </select>
             <span *ngIf="agregarPartido.get('localId')?.invalid && agregarPartido.get('localId')?.touched" class="text-danger">
-                Es obligatorio seleccionar el equipo <strong>local</strong>.
+                Es obligatorio seleccionar el colegio <strong>local</strong>.
             </span>
         </div>
 
         <div class="mb-3">
-            <label for="visitanteId" class="form-label">Equipo visitante</label>
+            <label for="visitanteId" class="form-label">Colegio visitante</label>
             <select formControlName="visitanteId" class="form-control" id="visitanteId">
-                <option value="">Seleccionar equipo visitante</option>
-                <option *ngFor="let equipo of equipos" [value]="equipo.id">{{ equipo.nombre }}</option>
+                <option value="">Seleccionar colegio visitante</option>
+                <option *ngFor="let colegio of colegios" [value]="colegio.id">{{ colegio.nombre }}</option>
             </select>
             <span *ngIf="agregarPartido.get('visitanteId')?.invalid && agregarPartido.get('visitanteId')?.touched" class="text-danger">
-                Es obligatorio seleccionar el equipo <strong>visitante</strong>.
+                Es obligatorio seleccionar el colegio <strong>visitante</strong>.
             </span>
         </div>
 
+        <!--
         <div *ngIf="accion === 'Editar' && partidoPasado">
             <div class="mb-3">
                 <label for="resultadoLocal" class="form-label">Resultado Equipo Local</label>

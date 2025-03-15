@@ -30,8 +30,8 @@ export class AgregarEditarPartidoComponent implements OnInit {
       fecha: ['', Validators.required],
       lugar: ['', Validators.required],
       detalles: ['', Validators.required],
-      // localId: ['', Validators.required],
-      // visitanteId: ['', Validators.required],
+      localId: ['', Validators.required],
+      visitanteId: ['', Validators.required],
       // resultadoLocal: [null],
       // resultadoVisitante: [null]
     });   
@@ -60,8 +60,8 @@ export class AgregarEditarPartidoComponent implements OnInit {
           fecha: data.fecha,
           lugar: data.lugar,
           detalles: data.detalles,
-          // localId: data.localId,
-          // visitanteId: data.visitanteId,
+          localId: data.localId,
+          visitanteId: data.visitanteId,
           // resultadoLocal: data.resultadoLocal,
           // resultadoVisitante: data.resultadoVisitante
         });
@@ -79,16 +79,16 @@ export class AgregarEditarPartidoComponent implements OnInit {
         fecha: this.agregarPartido.get('fecha')?.value,
         lugar: this.agregarPartido.get('lugar')?.value,
         detalles: this.agregarPartido.get('detalles')?.value,
-        // localId: this.agregarPartido.get('localId')?.value,
-        // visitanteId: this.agregarPartido.get('visitanteId')?.value,
+        localId: this.agregarPartido.get('localId')?.value,
+        visitanteId: this.agregarPartido.get('visitanteId')?.value,
         // resultadoLocal: this.agregarPartido.get('resultadoLocal')?.value,
         // resultadoVisitante: this.agregarPartido.get('resultadoVisitante')?.value
       };
   
-      // if (!partido.localId || !partido.visitanteId) {
-      //   this.toastr.error('Por favor seleccione ambos equipos: local y visitante.', 'Campos incompletos');
-      //   return;
-      // }
+      if (!partido.localId || !partido.visitanteId) {
+        this.toastr.error('Por favor seleccione ambos equipos: local y visitante.', 'Campos incompletos');
+        return;
+      }
   
       if (this.partido === undefined) {
         this._partidoService.savePartido(partido).subscribe(

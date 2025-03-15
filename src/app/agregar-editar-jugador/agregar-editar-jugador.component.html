@@ -24,9 +24,9 @@
             </span>
         </div>
         <div class="mb-3">
-            <label for="equipo" class="form-label">Equipo</label>
-            <select formControlName="equipo" class="form-control" id="equipo">
-                <option *ngFor="let equipo of listColegios; let index = index" [value]="listColegios[index].id">{{equipo.nombre}}</option>
+            <label for="colegio" class="form-label">Colegio</label>
+            <select formControlName="colegio" class="form-control" id="colegio">
+                <option *ngFor="let colegio of listColegios; let index = index" [value]="listColegios[index].id">{{colegio.nombre}}</option>
             </select>
         </div>
         

@@ -14,11 +14,11 @@ import { ColegioService } from '../services/colegio.service';
 })
 export class ListJugadoresComponent implements OnInit {
   listJugadores: jugador[] = [];
-  // equipos: { [id: number]: string } = {};
+  colegios: { [id: number]: string } = {};
 
   constructor(
     private _jugadorService: JugadorService,
-    // private _colegioService: ColegioService,
+    private _colegioService: ColegioService,
     private toastr: ToastrService
   ) { }
 
@@ -29,23 +29,23 @@ export class ListJugadoresComponent implements OnInit {
   getJugadores() {
     this._jugadorService.getListJugadores().subscribe(data => {
       this.listJugadores = data;
-      // this.cargarEquipos();
+      this.cargarEquipos();
     }, error => {
       console.log(error);
     });
   }
 
-  // cargarEquipos() {
-  //   this.listJugadores.forEach(jugador => {
-  //     if (!this.equipos[jugador.equipoId]) {
-  //       this._colegioService.getColegio(jugador.equipoId).subscribe((colegio: colegio) => {
-  //         this.equipos[jugador.equipoId] = colegio.nombre;
-  //       }, error => {
-  //         console.log(error);
-  //       });
-  //     }
-  //   });
-  // }
+  cargarEquipos() {
+    this.listJugadores.forEach(jugador => {
+      if (!this.colegios[jugador.colegioId]) {
+        this._colegioService.getColegio(jugador.colegioId).subscribe((colegio: colegio) => {
+          this.colegios[jugador.colegioId] = colegio.nombre;
+        }, error => {
+          console.log(error);
+        });
+      }
+    });
+  }
 
   eliminarJugador(id: any) {
     console.log(id);

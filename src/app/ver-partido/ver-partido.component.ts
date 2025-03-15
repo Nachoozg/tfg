@@ -26,28 +26,20 @@ export class VerPartidoComponent implements OnInit {
   }
 
   getPartido() {
-    this._partidoService.getPartido(this.id).subscribe({
-      next: (data) => {
-        if (data) {
-          console.log('Partido recibido:', data);
-          // Asignamos directamente el partido
-          this.partido = data;
-  
-          // (Comentamos todo lo referente a local/visitante)
-          // this._colegioService.getColegio(data.localId).subscribe(local => {
-          //   this._colegioService.getColegio(data.visitanteId).subscribe(visitante => {
-          //     this.partido = {
-          //       ...data,
-          //       nombreLocal: local?.nombre || 'Desconocido',
-          //       nombreVisitante: visitante?.nombre || 'Desconocido'
-          //     };
-          //   });
-          // });
-        }
-      },
-      error: (error) => {
-        console.log('Error al obtener el partido', error);
+    this._partidoService.getPartido(this.id).subscribe(data => {
+      if (data) {
+        this._colegioService.getColegio(data.localId).subscribe(local => {
+          this._colegioService.getColegio(data.visitanteId).subscribe(visitante => {
+            this.partido = {
+              ...data,
+              nombreLocal: local?.nombre || "Desconocido",
+              nombreVisitante: visitante?.nombre || "Desconocido"
+            };
+          });
+        });
       }
+    }, error => {
+      console.log("Error al obtener el partido", error);
     });
   }  
 }

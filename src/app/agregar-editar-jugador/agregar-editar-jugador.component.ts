@@ -33,17 +33,17 @@ export class AgregarEditarJugadorComponent implements OnInit {
       nombre: ['', Validators.required],
       apellidos: ['', Validators.required],
       edad: ['', Validators.required],
-      equipo: [''],
+      colegio: [''],
     })
     this.id = +this.aRoute.snapshot.paramMap.get('id')!;
    }
 
   ngOnInit(): void {
-    this.getEquipos();
+    this.getColegios();
     this.esEditar();
   }
 
-  getEquipos() {
+  getColegios() {
     this._colegioService.getListColegios().subscribe(data => {
       this.listColegios = data;
     }, error => {
@@ -61,8 +61,8 @@ export class AgregarEditarJugadorComponent implements OnInit {
           nombre: data.nombre,
           apellidos: data.apellidos,
           edad: data.edad,
-          equipo: data.equipo,
-          // equipoId: data.equipoId,
+          // colegio: data.colegio,
+          colegio: data.colegioId,
         })
       }, error => {
         console.log(error);
@@ -73,13 +73,13 @@ export class AgregarEditarJugadorComponent implements OnInit {
   agregarEditarJugador() {
 
     if(this.jugador == undefined) {
-      var id = this.agregarJugador.get('equipo')?.value;
+      var id = this.agregarJugador.get('colegio')?.value;
       // Agregamos un nuevo jugador
       const jugador: jugador = {
         nombre: this.agregarJugador.get('nombre')?.value,
         apellidos: this.agregarJugador.get('apellidos')?.value,
         edad: this.agregarJugador.get('edad')?.value,
-        // equipoId: id
+        colegioId: id
       }
       this._jugadorService.saveJugador(jugador).subscribe(data => {
         this.toastr.success('El jugador fue registrado con exito', 'Jugador registrado');
@@ -96,7 +96,7 @@ export class AgregarEditarJugadorComponent implements OnInit {
         nombre: this.agregarJugador.get('nombre')?.value,
         apellidos: this.agregarJugador.get('apellidos')?.value,
         edad: this.agregarJugador.get('edad')?.value,
-        // equipoId: this.agregarJugador.get('equipo')?.value
+        colegioId: this.agregarJugador.get('colegio')?.value
       }
 
       this._jugadorService.updateJugador(this.id, jugador).subscribe(data => {

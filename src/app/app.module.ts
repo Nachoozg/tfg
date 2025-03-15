@@ -21,6 +21,8 @@ import { AgregarEditarJugadorComponent } from './agregar-editar-jugador/agregar-
 import { AgregarEditarPartidoComponent } from './agregar-editar-partido/agregar-editar-partido.component';
 import { VerPartidoComponent } from './ver-partido/ver-partido.component';
 
+import { FullCalendarModule } from '@fullcalendar/angular';
+
 
 @NgModule({
   declarations: [
@@ -42,6 +44,7 @@ import { VerPartidoComponent } from './ver-partido/ver-partido.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    FullCalendarModule,
     FormsModule,
     HttpClientModule,
     ToastrModule.forRoot()

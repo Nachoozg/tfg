@@ -5,7 +5,7 @@
             <h3 class="mt-5">Listado de Jugadores</h3>
         </div>
         <div class="col-lg-6">
-            <button class="btn btn-success float-end" routerLink="/agregarJugador">Inscribir Nuevo Jugador</button>
+            <button class="btn btn-success float-end mt-5" routerLink="/agregarJugador">Inscribir Nuevo Jugador</button>
         </div>
     </div>
     
@@ -13,7 +13,8 @@
         <thead>
             <tr>
                 <td> <strong>Nombre y Apellidos</strong> </td>
-                <td> <strong>Edad</strong></td>
+                <td> <strong>Edad</strong> </td>
+                <td> <strong>Colegio</strong> </td>
                 <td></td>
                 <td></td>
             </tr>
@@ -24,7 +25,7 @@
                     <a [routerLink]="['/verJugador', jugador.id]"> {{ jugador.nombre }} {{ jugador.apellidos }} </a> 
                 </td>
                 <td>{{ jugador.edad }}</td>
-                <!-- <td>{{ equipos[jugador.equipoId] }}</td> -->
+                <td>{{ colegios[jugador.colegioId] }}</td>
                 <td style="width: 10%;">
                     <button [routerLink]="['/editarJugador', jugador.id]" class="btn btn-primary">Editar</button>
                 </td>

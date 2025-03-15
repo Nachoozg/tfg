@@ -3,4 +3,5 @@ export interface jugador {
     nombre: string;
     apellidos: string;
     edad: number;
+    colegioId: number;
 }
