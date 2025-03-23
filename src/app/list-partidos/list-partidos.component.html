@@ -15,7 +15,7 @@
         <td><strong>Fecha</strong></td>
         <td><strong>Lugar</strong></td>
         <td><strong>Detalles</strong></td>
-        <!-- <td><strong>Resultado</strong></td> -->
+        <td><strong>Resultado</strong></td>
         <td></td>
         <td></td>
       </tr>
@@ -29,14 +29,14 @@
         </td>
         <td>{{ partido.lugar }}</td>
         <td>{{ partido.detalles }}</td>
-        <!-- <td>
+        <td>
           <span *ngIf="partido.resultadoLocal != null && partido.resultadoVisitante != null">
             {{ partido.resultadoLocal }} - {{ partido.resultadoVisitante }}
           </span>
           <span *ngIf="partido.resultadoLocal == null || partido.resultadoVisitante == null">
             Partido no jugado aún
           </span>
-        </td> -->
+        </td>
         <td style="width: 10%;">
           <button [routerLink]="['/editarPartido', partido.id]" class="btn btn-primary">
             Editar

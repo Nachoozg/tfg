@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-// import { jugador } from '../interfaces/jugador';
+import { jugador } from '../interfaces/jugador';
 import { partido } from '../interfaces/partido';
 import { PartidoService } from '../services/partido.service';
-// import { JugadorService } from '../services/jugador.service';
+import { JugadorService } from '../services/jugador.service';
 
 @Component({
   selector: 'app-list-partidos',
@@ -14,11 +14,11 @@ import { PartidoService } from '../services/partido.service';
 export class ListPartidosComponent implements OnInit {
 
   listPartidos: partido[] = [];
-  // jugadores: jugador[] = []; // Para almacenar la lista de jugadores
+  jugadores: jugador[] = []; // Para almacenar la lista de jugadores
 
   constructor(
     private _partidoService: PartidoService,
-    // private _jugadorService: JugadorService, // Inyectamos el servicio de jugadores
+    private _jugadorService: JugadorService,
     private toastr: ToastrService
   ) { }
 
@@ -26,7 +26,6 @@ export class ListPartidosComponent implements OnInit {
     this.getPartidos();
   }
 
-  // Obtener la lista de partidos
   getPartidos() {
     this._partidoService.getListPartidos().subscribe(data => {
       this.listPartidos = data;
@@ -35,7 +34,6 @@ export class ListPartidosComponent implements OnInit {
     });
   }
 
-  // Eliminar partido
   eliminarPartido(id: any) {
     console.log(id);
     this._partidoService.deletePartido(id).subscribe(data => {

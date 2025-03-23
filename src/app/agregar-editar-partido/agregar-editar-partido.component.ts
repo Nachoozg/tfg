@@ -32,8 +32,8 @@ export class AgregarEditarPartidoComponent implements OnInit {
       detalles: ['', Validators.required],
       localId: ['', Validators.required],
       visitanteId: ['', Validators.required],
-      // resultadoLocal: [null],
-      // resultadoVisitante: [null]
+      resultadoLocal: [null],
+      resultadoVisitante: [null]
     });   
     this.id = +this.aRoute.snapshot.paramMap.get('id')!;
   }
@@ -62,8 +62,8 @@ export class AgregarEditarPartidoComponent implements OnInit {
           detalles: data.detalles,
           localId: data.localId,
           visitanteId: data.visitanteId,
-          // resultadoLocal: data.resultadoLocal,
-          // resultadoVisitante: data.resultadoVisitante
+          resultadoLocal: data.resultadoLocal,
+          resultadoVisitante: data.resultadoVisitante
         });
         this.partidoPasado = new Date(data.fecha) < new Date();
       }, error => {
@@ -81,8 +81,8 @@ export class AgregarEditarPartidoComponent implements OnInit {
         detalles: this.agregarPartido.get('detalles')?.value,
         localId: this.agregarPartido.get('localId')?.value,
         visitanteId: this.agregarPartido.get('visitanteId')?.value,
-        // resultadoLocal: this.agregarPartido.get('resultadoLocal')?.value,
-        // resultadoVisitante: this.agregarPartido.get('resultadoVisitante')?.value
+        resultadoLocal: this.agregarPartido.get('resultadoLocal')?.value,
+        resultadoVisitante: this.agregarPartido.get('resultadoVisitante')?.value
       };
   
       if (!partido.localId || !partido.visitanteId) {

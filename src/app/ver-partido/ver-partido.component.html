@@ -13,14 +13,14 @@
                 <li class="mb-2"> <strong>Fecha:</strong> {{ partido.fecha | date: "dd/MM/yyyy" }} </li>
                 <li class="mb-2"> <strong>Lugar: </strong> {{ partido.lugar }} </li>
                 <li class="mb-2"> <strong>Detalles: </strong> {{ partido.detalles }} </li>
-                <!-- <li class="mb-2"> <strong>Resultado: </strong> 
+                <li class="mb-2"> <strong>Resultado: </strong> 
                     <span *ngIf="partido.resultadoLocal !== null && partido.resultadoVisitante !== null">
                         {{ partido.nombreLocal }} {{ partido.resultadoLocal }} - {{ partido.nombreVisitante }} {{ partido.resultadoVisitante }}
                     </span>
                     <span *ngIf="partido.resultadoLocal === null || partido.resultadoVisitante === null">
                         Partido no jugado aún
                     </span>
-                </li> -->
+                </li>
             </ul>
         </div>
         

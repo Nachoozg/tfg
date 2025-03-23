@@ -9,15 +9,11 @@ import { partido } from '../interfaces/partido';
 export class PartidoService {
     private myAppUrl = 'https://localhost:44372/';
     private myApiUrl = 'api/Partido/';
-
+    
     constructor(private http: HttpClient) { }
 
     getListPartidos(): Observable<any> {
       return this.http.get(this.myAppUrl + this.myApiUrl);
-    }
-
-    getPartidosPorEquipo(equipoId: number): Observable<any> {
-      return this.http.get(`${this.myAppUrl}${this.myApiUrl}equipo/${equipoId}`);
     }
 
     deletePartido(id: number): Observable<any> {

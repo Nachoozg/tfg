@@ -1,2 +1,51 @@
 <app-navbar></app-navbar>
-<p>list-clasificacion works!</p>
+<head>
+  <meta charset="UTF-8" />
+  <title>Tabla de Posiciones</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 60%;
+      margin: 20px auto;
+      font-family: Arial, sans-serif;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px 12px;
+      text-align: center;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    caption {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2 class="mt-5 text-center">Tabla de Clasificación</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Equipo (ID)</th>
+          <th>PJ</th>   <!-- Partidos Jugados -->
+          <th>V</th>    <!-- Victorias -->
+          <th>D</th>    <!-- Derrotas -->
+          <th>Puntos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of clasificacion">
+          <td>{{ item.equipo }}</td>
+          <td>{{ item.partidosJugados }}</td>
+          <td>{{ item.victorias }}</td>
+          <td>{{ item.derrotas }}</td>
+          <td>{{ item.puntos }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>

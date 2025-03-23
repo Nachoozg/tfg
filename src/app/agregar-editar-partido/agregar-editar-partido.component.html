@@ -46,7 +46,6 @@
             </span>
         </div>
 
-        <!--
         <div *ngIf="accion === 'Editar' && partidoPasado">
             <div class="mb-3">
                 <label for="resultadoLocal" class="form-label">Resultado Equipo Local</label>
@@ -56,8 +55,7 @@
                 <label for="resultadoVisitante" class="form-label">Resultado Equipo Visitante</label>
                 <input formControlName="resultadoVisitante" type="number" class="form-control" id="resultadoVisitante" placeholder="Ingrese el resultado del equipo visitante">
             </div>
-        </div> -->
-  
+        </div>
 
         <button type="submit" [disabled]="agregarPartido.invalid" class="btn btn-success float-end">Aceptar</button>
         <button type="button" routerLink="/Partidos" class="btn btn-secondary">Volver</button>
