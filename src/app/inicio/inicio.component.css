@@ -67,3 +67,7 @@
 ::ng-deep .fc-daygrid-day.fc-day-future {
     background-color: rgb(221, 228, 219) !important;
 }
+
+::ng-deep .fc-event {
+    cursor: pointer;
+}

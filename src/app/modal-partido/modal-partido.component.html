@@ -1,0 +1,73 @@
+<h2 mat-dialog-title>{{ accion }}</h2>
+<mat-dialog-content>
+  <!-- Si estamos en modo edición, mostramos el nombre de los equipos -->
+  <div *ngIf="data.id" style="margin-bottom: 15px; font-weight: bold">
+    Equipos: {{ localNombre }} vs {{ visitanteNombre }}
+  </div>
+  <form [formGroup]="agregarPartido" (ngSubmit)="agregarEditarPartido()">
+    <mat-form-field appearance="fill" style="width: 100%">
+      <mat-label>Fecha</mat-label>
+      <input matInput formControlName="fecha" type="date" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="width: 100%">
+      <mat-label>Lugar</mat-label>
+      <input matInput formControlName="lugar" type="text" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="width: 100%">
+      <mat-label>Detalles</mat-label>
+      <input matInput formControlName="detalles" type="text" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="width: 100%">
+      <mat-label>Colegio Local</mat-label>
+      <mat-select formControlName="localId">
+        <mat-option value="">Seleccionar colegio local</mat-option>
+        <mat-option *ngFor="let colegio of colegios" [value]="colegio.id">
+          {{ colegio.nombre }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="width: 100%">
+      <mat-label>Colegio Visitante</mat-label>
+      <mat-select formControlName="visitanteId">
+        <mat-option value="">Seleccionar colegio visitante</mat-option>
+        <mat-option *ngFor="let colegio of colegios" [value]="colegio.id">
+          {{ colegio.nombre }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="width: 100%">
+      <mat-label>Resultado Equipo Local</mat-label>
+      <input matInput formControlName="resultadoLocal" type="number" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" style="width: 100%">
+      <mat-label>Resultado Equipo Visitante</mat-label>
+      <input matInput formControlName="resultadoVisitante" type="number" />
+    </mat-form-field>
+
+    <div style="margin-top: 20px; display: flex; justify-content: flex-end">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="agregarPartido.invalid"
+      >
+        Aceptar
+      </button>
+      <button
+        mat-raised-button
+        color="warn"
+        type="button"
+        (click)="onCancel()"
+        style="margin-left: 10px"
+      >
+        Cancelar
+      </button>
+    </div>
+  </form>
+</mat-dialog-content>

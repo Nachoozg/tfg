@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PartidoService } from '../services/partido.service';
+import { ColegioService } from '../services/colegio.service';
 import { partido } from '../interfaces/partido';
+import { colegio } from '../interfaces/colegio';
 import { clasificacion } from '../interfaces/clasificacion';
 
 @Component({
@@ -12,7 +14,10 @@ import { clasificacion } from '../interfaces/clasificacion';
 export class ListClasificacionComponent implements OnInit {
   clasificacion: clasificacion[] = [];
 
-  constructor(private partidoService: PartidoService) {}
+  constructor(
+    private partidoService: PartidoService,
+    private colegioService: ColegioService
+  ) {}
 
   ngOnInit(): void {
     this.getPartidos();
@@ -80,5 +85,19 @@ export class ListClasificacionComponent implements OnInit {
 
     this.clasificacion = Array.from(mapClasificacion.values());
     this.clasificacion.sort((a, b) => b.puntos - a.puntos);
+    this.actualizarNombresEquipos();
   }
+
+  actualizarNombresEquipos(): void {
+    this.colegioService.getListColegios().subscribe((colegios: colegio[]) => {
+      const mapaColegios = new Map<number, string>();
+      colegios.forEach((colegio: colegio) => {
+        mapaColegios.set(colegio.id!, colegio.nombre);
+      });
+      this.clasificacion.forEach((item) => {
+        item.equipo = mapaColegios.get(item.equipo as number) || item.equipo;
+      });
+    });
+  }
+  
 }

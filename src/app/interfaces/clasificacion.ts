@@ -1,5 +1,5 @@
 export interface clasificacion {
-  equipo: number;
+  equipo: number | string;
   partidosJugados: number;
   victorias: number;
   derrotas: number;

@@ -22,6 +22,13 @@ import { AgregarEditarPartidoComponent } from './agregar-editar-partido/agregar-
 import { VerPartidoComponent } from './ver-partido/ver-partido.component';
 
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { ModalPartidoComponent } from './modal-partido/modal-partido.component';
+
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -38,12 +45,18 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     VerJugadorComponent,
     AgregarEditarJugadorComponent,
     AgregarEditarPartidoComponent,
-    VerPartidoComponent
+    VerPartidoComponent,
+    ModalPartidoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule,
     FullCalendarModule,
     FormsModule,
     HttpClientModule,
