@@ -32,4 +32,9 @@ export class ColegioService {
   updateColegio(id: number, colegio: colegio): Observable<any> {
     return this.http.put(this.myAppUrl + this.myApiUrl + id, colegio);
   }
+
+  uploadImage(formData: FormData): Observable<any> {
+    return this.http.post(this.myAppUrl + this.myApiUrl + 'upload', formData);
+  }
+  
 }

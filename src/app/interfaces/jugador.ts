@@ -4,5 +4,5 @@ export interface jugador {
     apellidos: string;
     edad: number;
     colegioId: number;
-    foto?: string;
+    imagenJugador?: string;
 }

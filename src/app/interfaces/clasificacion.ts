@@ -1,5 +1,6 @@
 export interface clasificacion {
-  equipo: number | string;
+  equipoId: number;
+  nombreEquipo: string;
   partidosJugados: number;
   victorias: number;
   derrotas: number;

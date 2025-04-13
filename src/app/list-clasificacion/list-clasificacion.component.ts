@@ -1,103 +1,65 @@
 import { Component, OnInit } from '@angular/core';
-import { PartidoService } from '../services/partido.service';
-import { ColegioService } from '../services/colegio.service';
-import { partido } from '../interfaces/partido';
-import { colegio } from '../interfaces/colegio';
+import { ClasificacionService } from '../services/clasificacion.service';
+import { JugadorService } from '../services/jugador.service';
 import { clasificacion } from '../interfaces/clasificacion';
+import { jugador } from '../interfaces/jugador';
 
 @Component({
   selector: 'app-list-clasificacion',
-  standalone: false,
   templateUrl: './list-clasificacion.component.html',
   styleUrls: ['./list-clasificacion.component.css'],
+  standalone: false
 })
 export class ListClasificacionComponent implements OnInit {
   clasificacion: clasificacion[] = [];
+  jugadores: jugador[] = [];
+  modalAbierto: boolean = false;
+  colegioModal!: string;
 
   constructor(
-    private partidoService: PartidoService,
-    private colegioService: ColegioService
+    private clasificacionService: ClasificacionService,
+    private jugadorService: JugadorService
   ) {}
 
   ngOnInit(): void {
-    this.getPartidos();
+    this.actualizarYObtenerClasificacion();
   }
 
-  getPartidos(): void {
-    this.partidoService.getListPartidos().subscribe({
-      next: (partidos: partido[]) => {
-        this.calcularClasificacion(partidos);
+  actualizarYObtenerClasificacion(): void {
+    this.clasificacionService.updateClasificacion().subscribe({
+      next: () => {
+        this.clasificacionService.getClasificacion().subscribe({
+          next: (data: clasificacion[]) => {
+            this.clasificacion = data;
+          },
+          error: (err) => {
+            console.error('Error al obtener la clasificación:', err);
+          },
+        });
       },
       error: (err) => {
-        console.error('Error al obtener la lista de partidos:', err);
+        console.error('Error al actualizar la clasificación:', err);
       },
     });
   }
 
-  calcularClasificacion(partidos: partido[]): void {
-    const mapClasificacion = new Map<number, clasificacion>();
-
-    for (const partido of partidos) {
-      const localId = partido.localId;
-      const visitanteId = partido.visitanteId;
-      const resLocal = partido.resultadoLocal;
-      const resVisitante = partido.resultadoVisitante;
-
-      if (!mapClasificacion.has(localId)) {
-        mapClasificacion.set(localId, {
-          equipo: localId,
-          partidosJugados: 0,
-          victorias: 0,
-          derrotas: 0,
-          puntos: 0,
-        });
-      }
-      if (!mapClasificacion.has(visitanteId)) {
-        mapClasificacion.set(visitanteId, {
-          equipo: visitanteId,
-          partidosJugados: 0,
-          victorias: 0,
-          derrotas: 0,
-          puntos: 0,
-        });
-      }
-
-      if (resLocal != null && resVisitante != null) {
-        const localData = mapClasificacion.get(localId)!;
-        const visitanteData = mapClasificacion.get(visitanteId)!;
-
-        localData.partidosJugados++;
-        visitanteData.partidosJugados++;
-
-        if (resLocal > resVisitante) {
-          localData.victorias++;
-          visitanteData.derrotas++;
-          localData.puntos += 2;
-          visitanteData.puntos += 1;
-        } else if (resLocal < resVisitante) {
-          visitanteData.victorias++;
-          localData.derrotas++;
-          visitanteData.puntos += 2;
-          localData.puntos += 1;
-        }
-      }
+  abrirModal(colegioId: number | undefined, nombreColegio: string): void {
+    if (colegioId !== undefined) {
+      this.jugadorService.getJugadoresPorColegio(colegioId).subscribe({
+        next: (data: jugador[]) => {
+          this.jugadores = data;
+          this.colegioModal = nombreColegio;
+          this.modalAbierto = true;
+        },
+        error: (err) => {
+          console.error('Error al obtener los jugadores del colegio:', err);
+        },
+      });
     }
-
-    this.clasificacion = Array.from(mapClasificacion.values());
-    this.clasificacion.sort((a, b) => b.puntos - a.puntos);
-    this.actualizarNombresEquipos();
   }
 
-  actualizarNombresEquipos(): void {
-    this.colegioService.getListColegios().subscribe((colegios: colegio[]) => {
-      const mapaColegios = new Map<number, string>();
-      colegios.forEach((colegio: colegio) => {
-        mapaColegios.set(colegio.id!, colegio.nombre);
-      });
-      this.clasificacion.forEach((item) => {
-        item.equipo = mapaColegios.get(item.equipo as number) || item.equipo;
-      });
-    });
+  cerrarModal(): void {
+    this.modalAbierto = false;
+    this.jugadores = [];
   }
-  
 }

@@ -7,24 +7,21 @@ import { ColegioService } from '../services/colegio.service';
   selector: 'app-ver-colegio',
   standalone: false,
   templateUrl: './ver-colegio.component.html',
-  styleUrl: './ver-colegio.component.css'
+  styleUrls: ['./ver-colegio.component.css']
 })
 export class VerColegioComponent implements OnInit {
   id: number;
   colegio: colegio | undefined;
-  // partidos: partido[] = [];
 
   constructor(
     private aRoute: ActivatedRoute,
     private _colegioService: ColegioService
-    // private _partidoService: PartidoService
   ) {
     this.id = +this.aRoute.snapshot.paramMap.get('id')!;
   }
 
   ngOnInit(): void {
     this.getEquipo();
-    // this.getPartidosDelEquipo();
   }
 
   getEquipo() {
@@ -32,14 +29,4 @@ export class VerColegioComponent implements OnInit {
       this.colegio = data;
     });
   }
-
-  // getPartidosDelEquipo() {
-  //   this._partidoService.getPartidosPorEquipo(this.id).subscribe(data => {
-  //     this.partidos = data.map((partido: any) => ({
-  //       ...partido,
-  //       rivalId: partido.localId === this.id ? partido.visitanteId : partido.localId,
-  //       rivalNombre: partido.localId === this.id ? partido.visitanteNombre : partido.localNombre
-  //     }));
-  //   });
-  // }
 }

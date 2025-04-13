@@ -29,7 +29,11 @@
                 <option *ngFor="let colegio of listColegios; let index = index" [value]="listColegios[index].id">{{colegio.nombre}}</option>
             </select>
         </div>
-        
+        <div class="mb-3">
+            <label for="fotoJugador" class="form-label">Foto del Jugador</label>
+            <input type="file" class="form-control" id="fotoJugador" (change)="onFileSelect($event)">
+            <img *ngIf="imagenPreview" [src]="imagenPreview" alt="Imagen del Jugador" class="img-thumbnail mt-2" width="150">
+        </div>
         <button type="submit" [disabled]="agregarJugador.invalid" class="btn btn-success float-end">Aceptar</button>
         <button type="button" routerLink="/Jugadores" class="btn btn-secondary">Volver</button>
     </form>

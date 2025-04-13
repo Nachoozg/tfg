@@ -32,4 +32,12 @@ export class JugadorService {
   updateJugador(id: number, jugador: jugador): Observable<any> {
     return this.http.put(this.myAppUrl + this.myApiUrl + id, jugador);
   }
+
+  getJugadoresPorColegio(colegioId: number): Observable<jugador[]> {
+    return this.http.get<jugador[]>(`${this.myAppUrl}api/Jugador/colegio/${colegioId}`);
+  }
+  
+  uploadImage(formData: FormData): Observable<any> {
+    return this.http.post(this.myAppUrl + this.myApiUrl + 'upload', formData);
+  }
 }

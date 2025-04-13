@@ -4,6 +4,9 @@
         <h3 class="mt-5">{{ jugador.nombre }} {{ jugador.apellidos }}</h3>
         <hr>
         <h5 class="mb-5">Información sobre el jugador</h5>
+        <div *ngIf="jugador.imagenJugador">
+            <img [src]="'https://localhost:44372/' + jugador.imagenJugador" alt="{{ jugador.nombre }}" style="width:300px; height:300px; object-fit: cover;">
+        </div>
         <div>
             <ul>
                 <li class="mb-2"> <strong>Edad:</strong> {{ jugador.edad }} años</li>

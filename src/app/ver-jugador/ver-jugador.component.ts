@@ -9,20 +9,20 @@ import { ColegioService } from '../services/colegio.service';
   selector: 'app-ver-jugador',
   standalone: false,
   templateUrl: './ver-jugador.component.html',
-  styleUrl: './ver-jugador.component.css'
+  styleUrls: ['./ver-jugador.component.css']
 })
 export class VerJugadorComponent implements OnInit {
-
   id: number;
   jugador: jugador | undefined;
   colegios: { [id: number]: string } = {};
 
-  constructor( private aRoute: ActivatedRoute, 
-               private _jugadorService: JugadorService,
-               private _colegioService: ColegioService) {
-    this.aRoute.snapshot.paramMap.get('id');
+  constructor(
+    private aRoute: ActivatedRoute, 
+    private _jugadorService: JugadorService,
+    private _colegioService: ColegioService
+  ) {
     this.id = +this.aRoute.snapshot.paramMap.get('id')!;
-   }
+  }
 
   ngOnInit(): void {
     this.getJugador();
@@ -32,7 +32,7 @@ export class VerJugadorComponent implements OnInit {
     this._jugadorService.getJugador(this.id).subscribe(data => {
       this.jugador = data;
       this.cargarColegio();
-    })
+    });
   }
 
   cargarColegio() {
@@ -44,5 +44,4 @@ export class VerJugadorComponent implements OnInit {
       });
     }
   }
-  
 }

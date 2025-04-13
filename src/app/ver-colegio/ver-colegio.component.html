@@ -3,7 +3,10 @@
     <div *ngIf="colegio !== undefined">
         <h3 class="mt-5">{{ colegio.nombre }}</h3>
         <hr>
-        <h5 class="mb-5">Equipo de baloncesto</h5>
+        <h5 class="mb-5">Colegio</h5>
+        <div *ngIf="colegio.imagenColegio">
+            <img [src]="'https://localhost:44372/' + colegio.imagenColegio" alt="{{ colegio.nombre }}" style="width:300px; height:300px; object-fit: cover;">
+        </div>
         <div>
             <ul>
                 <li class="mb-2"> <strong>Nombre:</strong> {{ colegio.nombre }} </li>
