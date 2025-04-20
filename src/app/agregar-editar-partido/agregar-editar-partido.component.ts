@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { PartidoService } from '../services/partido.service';
 import { ColegioService } from '../services/colegio.service';
 import { partido } from '../interfaces/partido';
+import { ClasificacionService } from '../services/clasificacion.service';
 
 @Component({
   selector: 'app-agregar-editar-partido',
@@ -17,12 +18,13 @@ export class AgregarEditarPartidoComponent implements OnInit {
   accion = 'Agregar';
   id = 0;
   partido: any;
-  colegios: any[] = []; // Para almacenar la lista de equipos
+  colegios: any[] = [];
   partidoPasado: boolean = false;
 
   constructor(private fb: FormBuilder,
               private _partidoService: PartidoService,
               private _colegioService: ColegioService,
+              private _clasificacionService: ClasificacionService,
               private router: Router,
               private aRoute: ActivatedRoute,
               private toastr: ToastrService) {
@@ -103,16 +105,14 @@ export class AgregarEditarPartidoComponent implements OnInit {
         );
       } else {
         partido.id = this.partido.id;
-        this._partidoService.updatePartido(this.id, partido).subscribe(
-          (data) => {
-            this.toastr.success('El partido fue actualizado con éxito', 'Partido actualizado');
+        this._partidoService.updatePartido(this.id, partido).subscribe({
+          next: () => {
+            this.toastr.success('Partido actualizado con éxito', 'OK');
+            this._clasificacionService.getClasificacion().subscribe();
             this.router.navigate(['/Partidos']);
           },
-          (error) => {
-            this.toastr.error('Ocurrió un error, revisa bien los equipos y la fecha de juego', 'Error');
-            console.log(error);
-          }
-        );
+          error: err => { /*…*/ }
+        });
       }
     }
   }

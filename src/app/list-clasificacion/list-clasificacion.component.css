@@ -1,37 +1,59 @@
 .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,0.5);
-    z-index: 1050;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1050;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .modal-dialog {
-    background: #fff;
-    border-radius: 5px;
-    max-width: 500px;
-    width: 90%;
-    padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  max-width: 500px;
+  width: 90%;
+  padding: 20px;
 }
 
 .modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .modal-title {
-    margin: 0;
-    font-size: 1.2em;
+  margin: 0;
+  font-size: 1.2em;
 }
+
 .close {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+table {
+  border-collapse: collapse;
+  width: 60%;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+}
+th,
+td {
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  text-align: center;
+}
+th {
+  background-color: #f2f2f2;
+}
+caption {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  font-weight: bold;
 }
