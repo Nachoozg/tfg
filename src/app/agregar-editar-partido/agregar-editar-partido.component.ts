@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -6,6 +6,7 @@ import { PartidoService } from '../services/partido.service';
 import { ColegioService } from '../services/colegio.service';
 import { partido } from '../interfaces/partido';
 import { ClasificacionService } from '../services/clasificacion.service';
+import * as L from 'leaflet';
 
 @Component({
   selector: 'app-agregar-editar-partido',
@@ -13,13 +14,15 @@ import { ClasificacionService } from '../services/clasificacion.service';
   templateUrl: './agregar-editar-partido.component.html',
   styleUrl: './agregar-editar-partido.component.css'
 })
-export class AgregarEditarPartidoComponent implements OnInit {
+export class AgregarEditarPartidoComponent implements OnInit, AfterViewInit {
   agregarPartido: FormGroup;
   accion = 'Agregar';
   id = 0;
   partido: any;
   colegios: any[] = [];
   partidoPasado: boolean = false;
+  private map!: L.Map;
+  private marker!: L.Marker;
 
   constructor(private fb: FormBuilder,
               private _partidoService: PartidoService,
@@ -34,6 +37,8 @@ export class AgregarEditarPartidoComponent implements OnInit {
       detalles: ['', Validators.required],
       localId: ['', Validators.required],
       visitanteId: ['', Validators.required],
+      lat: [null, Validators.required],
+      lng: [null, Validators.required],
       resultadoLocal: [null],
       resultadoVisitante: [null]
     });   
@@ -43,6 +48,30 @@ export class AgregarEditarPartidoComponent implements OnInit {
   ngOnInit(): void {
     this.cargarEquipos();
     this.esEditar();
+  }
+
+  ngAfterViewInit(): void {
+    this.map = L.map('map').setView([42.343923, -3.696869], 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(this.map);
+
+    const lat = this.agregarPartido.value.lat;
+    const lng = this.agregarPartido.value.lng;
+    if (lat && lng) {
+      this.marker = L.marker([lat, lng]).addTo(this.map);
+      this.map.setView([lat, lng], 13);
+    }
+
+    this.map.on('click', (e: L.LeafletMouseEvent) => {
+      const { lat, lng } = e.latlng;
+      if (this.marker) { this.map.removeLayer(this.marker); }
+      this.marker = L.marker([lat, lng]).addTo(this.map);
+      this.agregarPartido.patchValue({
+        lat: parseFloat(lat.toFixed(6)),
+        lng: parseFloat(lng.toFixed(6))
+      });
+    });
   }
 
   cargarEquipos() {
@@ -65,7 +94,9 @@ export class AgregarEditarPartidoComponent implements OnInit {
           localId: data.localId,
           visitanteId: data.visitanteId,
           resultadoLocal: data.resultadoLocal,
-          resultadoVisitante: data.resultadoVisitante
+          resultadoVisitante: data.resultadoVisitante,
+          lat: data.lat,
+          lng: data.lng
         });
         this.partidoPasado = new Date(data.fecha) < new Date();
       }, error => {
@@ -83,6 +114,8 @@ export class AgregarEditarPartidoComponent implements OnInit {
         detalles: this.agregarPartido.get('detalles')?.value,
         localId: this.agregarPartido.get('localId')?.value,
         visitanteId: this.agregarPartido.get('visitanteId')?.value,
+        lat: this.agregarPartido.value.lat,
+        lng: this.agregarPartido.value.lng,
         resultadoLocal: this.agregarPartido.get('resultadoLocal')?.value,
         resultadoVisitante: this.agregarPartido.get('resultadoVisitante')?.value
       };

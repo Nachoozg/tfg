@@ -7,6 +7,8 @@ export interface partido {
     visitanteId: number;
     resultadoLocal?: number;
     resultadoVisitante?: number;
+    lat?: number;
+    lng?: number;
     nombreLocal?: string; 
     nombreVisitante?: string;  
 }

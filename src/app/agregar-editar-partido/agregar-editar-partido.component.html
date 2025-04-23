@@ -46,6 +46,15 @@
             </span>
         </div>
 
+        <div class="mb-3">
+            <label class="form-label">Ubicación (clic para marcar)</label>
+            <div id="map" style="height: 300px;"></div>
+        </div>
+          
+        <input formControlName="lat" type="hidden">
+        <input formControlName="lng" type="hidden">
+          
+
         <div *ngIf="accion === 'Editar' && partidoPasado">
             <div class="mb-3">
                 <label for="resultadoLocal" class="form-label">Resultado Equipo Local</label>
