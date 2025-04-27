@@ -1,0 +1,12 @@
+<div class="login">
+  <form class="custom-form" [formGroup]="loginForm" (ngSubmit)="iniciarSesion()"> 
+    <h1>Inicio de Sesión</h1>
+
+    <input formControlName="mail" type="email" class="form-control" placeholder="Email"/>
+
+    <input formControlName="password" type="password" class="form-control" placeholder="Contraseña"/>
+
+    <button class="inicio mb-3" type="submit">Iniciar Sesión</button>
+    <a routerLink="/registro">¿No tienes cuenta? Regístrate.</a>
+  </form>
+</div>

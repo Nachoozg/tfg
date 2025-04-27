@@ -29,6 +29,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
+import { LoginComponent } from './login/login.component';
+import { RegistroComponent } from './registro/registro.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -46,7 +49,9 @@ import { MatButtonModule } from '@angular/material/button';
     AgregarEditarJugadorComponent,
     AgregarEditarPartidoComponent,
     VerPartidoComponent,
-    ModalPartidoComponent
+    ModalPartidoComponent,
+    LoginComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +65,7 @@ import { MatButtonModule } from '@angular/material/button';
     FullCalendarModule,
     FormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     ToastrModule.forRoot()
   ],
   providers: [],

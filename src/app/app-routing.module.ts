@@ -11,6 +11,8 @@ import { VerJugadorComponent } from './ver-jugador/ver-jugador.component';
 import { AgregarEditarJugadorComponent } from './agregar-editar-jugador/agregar-editar-jugador.component';
 import { VerPartidoComponent } from './ver-partido/ver-partido.component';
 import { AgregarEditarPartidoComponent } from './agregar-editar-partido/agregar-editar-partido.component';
+import { LoginComponent } from './login/login.component';
+import { RegistroComponent } from './registro/registro.component';
 
 
 const routes: Routes = [
@@ -28,6 +30,8 @@ const routes: Routes = [
   { path: 'agregarPartido', component: AgregarEditarPartidoComponent },
   { path: 'editarPartido/:id', component: AgregarEditarPartidoComponent },
   { path: 'verPartido/:id', component: VerPartidoComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'registro', component: RegistroComponent },
   { path: '**', redirectTo: '' }
 ];
 

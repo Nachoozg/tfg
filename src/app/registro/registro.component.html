@@ -1,0 +1,21 @@
+<div class="registro">
+  <form class="custom-form" [formGroup]="agregarUsuario" (ngSubmit)="registro()">
+    <h1>Registro</h1>
+    <input formControlName="nombre" placeholder="Nombre">
+    <input formControlName="apellidos" placeholder="Apellidos">
+    <input formControlName="mail" type="email" placeholder="Email">
+    <input formControlName="password" type="password" placeholder="Contraseña">
+    <input formControlName="confPassword" type="password" placeholder="Confirmar contraseña">
+
+    <label for="rolId">Quiero registrarme como:</label>
+    <select formControlName="rolId" id="rolId" class="form-control mb-3">
+      <option [value]="null" disabled>-- Elige un rol --</option>
+      <option *ngFor="let r of roles" [value]="r.id">
+        {{ r.nombre }}
+      </option>
+    </select>
+    
+    <button type="submit">Registrarse</button>
+    <button class="volver" type="button" routerLink="/login">Volver</button>
+  </form>
+</div>
