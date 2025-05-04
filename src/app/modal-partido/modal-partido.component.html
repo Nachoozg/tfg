@@ -1,73 +1,94 @@
-<h2 mat-dialog-title>{{ accion }}</h2>
+<h2 mat-dialog-title class="title">{{ accion }}</h2>
+
 <mat-dialog-content>
-  <!-- Si estamos en modo edición, mostramos el nombre de los equipos -->
-  <div *ngIf="data.id" style="margin-bottom: 15px; font-weight: bold">
-    Equipos: {{ localNombre }} vs {{ visitanteNombre }}
+  <div *ngIf="data.id" class="equipos">
+    {{ localNombre }} vs {{ visitanteNombre }}
   </div>
-  <form [formGroup]="agregarPartido" (ngSubmit)="agregarEditarPartido()">
-    <mat-form-field appearance="fill" style="width: 100%">
+
+  <form [formGroup]="agregarPartido" (ngSubmit)="agregarEditarPartido()" [ngClass]="{ 'read-only': !isEditor }">
+
+    <mat-form-field appearance="fill" class="full">
       <mat-label>Fecha</mat-label>
-      <input matInput formControlName="fecha" type="date" />
+      <input matInput formControlName="fecha" type="date" [readonly]="!isEditor"
+      [ngClass]="{ 'readonly-input': !isEditor }"/>
     </mat-form-field>
 
-    <mat-form-field appearance="fill" style="width: 100%">
+    <mat-form-field appearance="fill" class="full">
       <mat-label>Lugar</mat-label>
-      <input matInput formControlName="lugar" type="text" />
+      <input matInput formControlName="lugar" [readonly]="!isEditor"
+      [ngClass]="{ 'readonly-input': !isEditor }"/>
     </mat-form-field>
 
-    <mat-form-field appearance="fill" style="width: 100%">
+    <mat-form-field appearance="fill" class="full">
       <mat-label>Detalles</mat-label>
-      <input matInput formControlName="detalles" type="text" />
+      <input matInput formControlName="detalles" [readonly]="!isEditor"
+      [ngClass]="{ 'readonly-input': !isEditor }"/>
     </mat-form-field>
 
-    <mat-form-field appearance="fill" style="width: 100%">
+    <mat-form-field appearance="fill" class="half">
       <mat-label>Colegio Local</mat-label>
-      <mat-select formControlName="localId">
-        <mat-option value="">Seleccionar colegio local</mat-option>
-        <mat-option *ngFor="let colegio of colegios" [value]="colegio.id">
-          {{ colegio.nombre }}
-        </mat-option>
-      </mat-select>
+      <ng-container *ngIf="isEditor; else viewLocal">
+        <mat-select formControlName="localId">
+          <mat-option *ngFor="let c of colegios" [value]="c.id">
+            {{ c.nombre }}
+          </mat-option>
+        </mat-select>
+      </ng-container>
+      <ng-template #viewLocal>
+        <input matInput [value]="localNombre" disabled>
+      </ng-template>
     </mat-form-field>
 
-    <mat-form-field appearance="fill" style="width: 100%">
+    <mat-form-field appearance="fill" class="half">
       <mat-label>Colegio Visitante</mat-label>
-      <mat-select formControlName="visitanteId">
-        <mat-option value="">Seleccionar colegio visitante</mat-option>
-        <mat-option *ngFor="let colegio of colegios" [value]="colegio.id">
-          {{ colegio.nombre }}
-        </mat-option>
-      </mat-select>
+      <ng-container *ngIf="isEditor; else viewVisitante">
+        <mat-select formControlName="visitanteId">
+          <mat-option *ngFor="let c of colegios" [value]="c.id">
+            {{ c.nombre }}
+          </mat-option>
+        </mat-select>
+      </ng-container>
+      <ng-template #viewVisitante>
+        <input matInput [value]="visitanteNombre" disabled>
+      </ng-template>
     </mat-form-field>
 
-    <mat-form-field appearance="fill" style="width: 100%">
-      <mat-label>Resultado Equipo Local</mat-label>
-      <input matInput formControlName="resultadoLocal" type="number" />
-    </mat-form-field>
+    <div class="resultados" *ngIf="data.id">
+      <mat-form-field appearance="fill" class="half">
+        <mat-label>Resultado Local</mat-label>
+        <input matInput formControlName="resultadoLocal" type="number" [readonly]="!isEditor"
+        [ngClass]="{ 'readonly-input': !isEditor }"/>
+      </mat-form-field>
 
-    <mat-form-field appearance="fill" style="width: 100%">
-      <mat-label>Resultado Equipo Visitante</mat-label>
-      <input matInput formControlName="resultadoVisitante" type="number" />
-    </mat-form-field>
+      <mat-form-field appearance="fill" class="half">
+        <mat-label>Resultado Visitante</mat-label>
+        <input matInput formControlName="resultadoVisitante" type="number" [readonly]="!isEditor"
+        [ngClass]="{ 'readonly-input': !isEditor }"/>
+      </mat-form-field>
+    </div>
 
-    <div style="margin-top: 20px; display: flex; justify-content: flex-end">
-      <button
-        mat-raised-button
-        color="primary"
-        type="submit"
-        [disabled]="agregarPartido.invalid"
-      >
-        Aceptar
+    <div class="map-buttons">
+      <button mat-stroked-button color="primary"
+              type="button"
+              (click)="openMapPicker()"
+              *ngIf="isEditor">
+        Marcar en el mapa
       </button>
-      <button
-        mat-raised-button
-        color="warn"
-        type="button"
-        (click)="onCancel()"
-        style="margin-left: 10px"
-      >
-        Cancelar
+      <button mat-stroked-button color="accent"
+              type="button"
+              (click)="viewOnMap()"
+              *ngIf="agregarPartido.value.lat">
+        Ver en el mapa
       </button>
     </div>
+
+    <mat-dialog-actions align="end" class="actions">
+      <button mat-button (click)="onCancel()">Cancelar</button>
+      <button mat-flat-button color="primary"
+              type="submit"
+              [disabled]="!isEditor || agregarPartido.invalid">
+        Aceptar
+      </button>
+    </mat-dialog-actions>
   </form>
 </mat-dialog-content>

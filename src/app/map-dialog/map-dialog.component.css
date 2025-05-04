@@ -1,0 +1,23 @@
+.map-container {
+  height: 300px;
+  width: 100%;
+}
+
+mat-dialog-content {
+  padding: 0;
+}
+
+mat-dialog-title {
+  margin: 0;
+  padding: 16px 24px;
+  font-size: 1.25rem;
+  font-weight: 500;
+  border-bottom: 1px solid #eee;
+}
+
+mat-dialog-actions {
+  padding: 8px 24px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { colegio } from '../interfaces/colegio';
 import { ColegioService } from '../services/colegio.service';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-list-colegios',
@@ -15,10 +16,12 @@ export class ListColegiosComponent implements OnInit {
 
   constructor(
     private _colegioService: ColegioService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    public auth: AuthService
   ) { }
 
   ngOnInit(): void {
+    console.log('En ListColegiosComponent, currentUser =', this.auth.currentUser);
     this.getColegios();
   }
 

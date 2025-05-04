@@ -4,6 +4,7 @@ import { jugador } from '../interfaces/jugador';
 import { partido } from '../interfaces/partido';
 import { PartidoService } from '../services/partido.service';
 import { JugadorService } from '../services/jugador.service';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-list-partidos',
@@ -19,7 +20,8 @@ export class ListPartidosComponent implements OnInit {
   constructor(
     private _partidoService: PartidoService,
     private _jugadorService: JugadorService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    public auth: AuthService
   ) { }
 
   ngOnInit(): void {

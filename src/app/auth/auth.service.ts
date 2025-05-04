@@ -35,7 +35,7 @@ export class AuthService {
   }
 
   isAdmin(): boolean {
-    return this.currentUser?.rol.toLowerCase() === 'admin';
+    return this.currentUser?.rol.toLowerCase() === 'administrador';
   }
 
   isArbitro(): boolean {

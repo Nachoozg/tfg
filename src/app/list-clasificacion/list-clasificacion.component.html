@@ -1,24 +1,100 @@
 <app-navbar></app-navbar>
 <div class="container">
   <h2 class="mt-5 text-center">Tabla de Clasificación</h2>
-  <table>
+
+  <table class="table table-hover mt-4 clasif-table">
     <thead>
       <tr>
-        <th>Colegio</th>
-        <th>PJ</th>
-        <th>V</th>
-        <th>D</th>
-        <th>Puntos</th>
+        <th></th>
+        <th>Colegio</th><th>PJ</th><th>V</th><th>D</th><th>Puntos</th><th>Últimos 5</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of clasificacion">
-        <td>{{ item.nombreEquipo }}</td>
-        <td>{{ item.partidosJugados }}</td>
-        <td>{{ item.victorias }}</td>
-        <td>{{ item.derrotas }}</td>
-        <td>{{ item.puntos }}</td>
-      </tr>
+      <ng-container *ngFor="let item of clasificacion">
+        <tr>
+          <td class="td-toggle">
+            <i class="bi"
+               [ngClass]="{
+                 'bi-chevron-down': selectedTeamId === item.equipoId,
+                 'bi-chevron-right': selectedTeamId !== item.equipoId
+               }"
+               (click)="alternarFila(item.equipoId)"></i>
+          </td>
+          <td>{{ item.nombreEquipo }}</td>
+          <td>{{ item.partidosJugados }}</td>
+          <td>{{ item.victorias }}</td>
+          <td>{{ item.derrotas }}</td>
+          <td>{{ item.puntos }}</td>
+          <td class="ultimos5">
+            <ng-container *ngIf="item.ultimos5.length; else sinDatos">
+              <span *ngFor="let r of item.ultimos5"
+                    class="circulo"
+                    [class.ganado]="r==='G'"
+                    [class.perdido]="r==='P'"
+                    [class.pendiente]="r==='?'">
+                {{ r }}
+              </span>
+            </ng-container>
+            <ng-template #sinDatos>—</ng-template>
+          </td>
+        </tr>
+        <tr *ngIf="selectedTeamId === item.equipoId">
+          <td colspan="7" class="p-0">
+            <div class="detalle-container">
+              <table class="table table-sm mb-0 inner-table">
+                <thead>
+                  <tr>
+                    <th>Fecha</th><th>Rival</th><th>Como</th><th>Resultado</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let m of partidosEquipo">
+                    <td>{{ m.fecha | date:'dd/MM/yyyy' }}</td>
+                    <td>{{ m.localId===item.equipoId ? m.visitanteNombre : m.localNombre }}</td>
+                    <td>{{ m.localId===item.equipoId ? 'Local' : 'Visitante' }}</td>
+                    <td>
+                      <ng-container *ngIf="m.resultadoLocal!=null && m.resultadoVisitante!=null; else sinRes">
+                        {{
+                          m.localId===item.equipoId
+                            ? (m.resultadoLocal + ' - ' + m.resultadoVisitante)
+                            : (m.resultadoVisitante + ' - ' + m.resultadoLocal)
+                        }}
+                      </ng-container>
+                      <ng-template #sinRes>–</ng-template>
+                    </td>
+                  </tr>
+                  <tr *ngIf="!partidosEquipo.length">
+                    <td colspan="4" class="text-center text-muted py-2">
+                      No hay partidos jugados aún
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="estadistica-panel">
+                <svg viewBox="0 0 36 36" class="circular-chart">
+                  <path class="fondo"
+                        d="M18 2.0845 a15.9155 15.9155 0 0 1 0 31.831
+                           a15.9155 15.9155 0 0 1 0 -31.831"/>
+                  <path class="progreso"
+                        [attr.stroke-dasharray]="item.porcentajeVictorias + ', 100'"
+                        d="M18 2.0845 a15.9155 15.9155 0 0 1 0 31.831
+                           a15.9155 15.9155 0 0 1 0 -31.831"/>
+                  <text x="18" y="20.35" class="texto">
+                    {{ item.porcentajeVictorias }}%
+                  </text>
+                </svg>
+                <div class="texto-estadistica">
+                  <strong>Porcentaje de victorias</strong><br>
+                  {{ item.victorias }} victorias /
+                  {{ item.derrotas }} derrotas
+                </div>
+              </div>
+
+            </div>
+          </td>
+        </tr>
+      </ng-container>
     </tbody>
   </table>
 </div>

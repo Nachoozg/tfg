@@ -4,7 +4,7 @@
         <div class="col-lg-6">
             <h3 class="mt-5">Listado de Colegios</h3>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6" *ngIf="auth.isColegio() || auth.isAdmin()">
             <button class="btn btn-success float-end mt-5" routerLink="/agregarColegio">Nuevo colegio</button>
         </div>
     </div>
@@ -24,10 +24,10 @@
                     <a [routerLink]="['/verColegio', colegio.id]"> {{ colegio.nombre }} </a> 
                 </td>
                 <td>{{ colegio.numeroJugadores }}</td>
-                <td style="width: 10%;">
+                <td style="width: 10%;" *ngIf="auth.isColegio() || auth.isAdmin()">
                     <button [routerLink]="['/editarColegio', colegio.id]" class="btn btn-primary">Editar</button>
                 </td>
-                <td style="width: 10%;">
+                <td style="width: 10%;" *ngIf="auth.isColegio() || auth.isAdmin()">
                     <button (click)="eliminarColegio(colegio.id)" class="btn btn-danger">Eliminar</button>
                 </td>
             </tr>

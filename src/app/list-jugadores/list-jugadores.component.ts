@@ -4,7 +4,7 @@ import { jugador } from '../interfaces/jugador';
 import { colegio } from '../interfaces/colegio';
 import { JugadorService } from '../services/jugador.service';
 import { ColegioService } from '../services/colegio.service';
-
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-list-jugadores',
@@ -19,7 +19,8 @@ export class ListJugadoresComponent implements OnInit {
   constructor(
     private _jugadorService: JugadorService,
     private _colegioService: ColegioService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    public auth: AuthService
   ) { }
 
   ngOnInit(): void {

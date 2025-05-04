@@ -34,18 +34,20 @@ export class LoginComponent{
       return;
     }
 
+    console.log('🟢 llamando a login…');
     const { mail, password } = this.loginForm.value;
 
     this.usuarioService.login({ mail, password }).subscribe({
       next: (res: any) => {
+        console.log('✅ login OK, payload=', res);
         const user: User = {
           id: res.user.id,
           nombre: res.user.nombre,
           mail: res.user.mail,
-          rol: res.user.rol
+          rol: res.user.rolNombre.toLowerCase(),
         };
         this.auth.login(user);
-        this.toastr.success('Sesión iniciada correctamente', '¡Bienvenido!');
+        this.toastr.success('¡Bienvenido, ' + user.nombre + '!');
         this.router.navigate(['/']);
       },
       error: err => {

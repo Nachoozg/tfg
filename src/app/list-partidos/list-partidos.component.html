@@ -5,7 +5,7 @@
       <h3 class="mt-5">Listado de Partidos</h3>
     </div>
     <div class="col-lg-6">
-      <button class="btn btn-success float-end mt-5" routerLink="/agregarPartido">Nuevo Partido</button>
+      <button class="btn btn-success float-end mt-5" routerLink="/agregarPartido" *ngIf="auth.isArbitro() || auth.isAdmin()">Nuevo Partido</button>
     </div>
   </div>
   
@@ -38,12 +38,12 @@
           </span>
         </td>
         <td style="width: 10%;">
-          <button [routerLink]="['/editarPartido', partido.id]" class="btn btn-primary">
+          <button [routerLink]="['/editarPartido', partido.id]" class="btn btn-primary" *ngIf="auth.isArbitro() || auth.isAdmin()">
             Editar
           </button>
         </td>
         <td style="width: 10%;">
-          <button (click)="eliminarPartido(partido.id)" class="btn btn-danger">
+          <button (click)="eliminarPartido(partido.id)" class="btn btn-danger" *ngIf="auth.isArbitro() || auth.isAdmin()">
             Eliminar
           </button>
         </td>

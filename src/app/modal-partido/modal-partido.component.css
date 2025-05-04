@@ -1,0 +1,29 @@
+.full { width: 100%; }
+.half { width: calc(50% - 8px); margin-right: 8px; display: inline-block; }
+.equipos {
+  margin-bottom: 1rem;
+  font-weight: bold;
+  text-align: center;
+}
+.title {
+  margin: 0;
+  padding: 1rem;
+  font-size: 1.5rem;
+  border-bottom: 1px solid #eee;
+}
+.resultados {
+  display: flex;
+  gap: 8px;
+  margin-top: 1rem;
+}
+.map-buttons {
+  margin: 1rem 0;
+  display: flex;
+  gap: 8px;
+}
+.actions {
+  margin-top: 1rem;
+}
+.mat-form-field {
+  margin-top: 8px;
+}

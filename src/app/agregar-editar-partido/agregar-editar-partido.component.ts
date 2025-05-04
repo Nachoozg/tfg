@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -6,7 +6,8 @@ import { PartidoService } from '../services/partido.service';
 import { ColegioService } from '../services/colegio.service';
 import { partido } from '../interfaces/partido';
 import { ClasificacionService } from '../services/clasificacion.service';
-import * as L from 'leaflet';
+import { MatDialog } from '@angular/material/dialog';
+import { MapDialogComponent } from '../map-dialog/map-dialog.component';
 
 @Component({
   selector: 'app-agregar-editar-partido',
@@ -14,21 +15,20 @@ import * as L from 'leaflet';
   templateUrl: './agregar-editar-partido.component.html',
   styleUrl: './agregar-editar-partido.component.css'
 })
-export class AgregarEditarPartidoComponent implements OnInit, AfterViewInit {
+export class AgregarEditarPartidoComponent implements OnInit {
   agregarPartido: FormGroup;
   accion = 'Agregar';
   id = 0;
   partido: any;
   colegios: any[] = [];
   partidoPasado: boolean = false;
-  private map!: L.Map;
-  private marker!: L.Marker;
 
   constructor(private fb: FormBuilder,
               private _partidoService: PartidoService,
               private _colegioService: ColegioService,
               private _clasificacionService: ClasificacionService,
               private router: Router,
+              private dialog: MatDialog,
               private aRoute: ActivatedRoute,
               private toastr: ToastrService) {
     this.agregarPartido = this.fb.group({
@@ -48,30 +48,6 @@ export class AgregarEditarPartidoComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.cargarEquipos();
     this.esEditar();
-  }
-
-  ngAfterViewInit(): void {
-    this.map = L.map('map').setView([42.343923, -3.696869], 13);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(this.map);
-
-    const lat = this.agregarPartido.value.lat;
-    const lng = this.agregarPartido.value.lng;
-    if (lat && lng) {
-      this.marker = L.marker([lat, lng]).addTo(this.map);
-      this.map.setView([lat, lng], 13);
-    }
-
-    this.map.on('click', (e: L.LeafletMouseEvent) => {
-      const { lat, lng } = e.latlng;
-      if (this.marker) { this.map.removeLayer(this.marker); }
-      this.marker = L.marker([lat, lng]).addTo(this.map);
-      this.agregarPartido.patchValue({
-        lat: parseFloat(lat.toFixed(6)),
-        lng: parseFloat(lng.toFixed(6))
-      });
-    });
   }
 
   cargarEquipos() {
@@ -149,4 +125,21 @@ export class AgregarEditarPartidoComponent implements OnInit, AfterViewInit {
       }
     }
   }
+
+  openMapPicker() {
+    const ref = this.dialog.open(MapDialogComponent, {
+      width: '500px',
+      data: {
+        lat: this.agregarPartido.value.lat,
+        lng: this.agregarPartido.value.lng,
+        editable: true
+      }
+    });
+    ref.afterClosed().subscribe(coords => {
+      if (coords) {
+        this.agregarPartido.patchValue(coords);
+      }
+    });
+  }
+  
 }

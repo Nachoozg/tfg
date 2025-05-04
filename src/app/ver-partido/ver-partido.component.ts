@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { partido } from '../interfaces/partido';
 import { PartidoService } from '../services/partido.service';
 import { ColegioService } from '../services/colegio.service';
+import { MatDialog } from '@angular/material/dialog';
+import { MapDialogComponent } from '../map-dialog/map-dialog.component';
 
 @Component({
   selector: 'app-ver-partido',
@@ -14,9 +16,10 @@ export class VerPartidoComponent implements OnInit {
   id: number;
   partido: partido | undefined;
 
-  constructor( private aRoute: ActivatedRoute, 
-               private _partidoService: PartidoService,
-               private _colegioService: ColegioService ) {
+  constructor(private aRoute: ActivatedRoute, 
+              private dialog: MatDialog,
+              private _partidoService: PartidoService,
+              private _colegioService: ColegioService ) {
     this.aRoute.snapshot.paramMap.get('id');
     this.id = +this.aRoute.snapshot.paramMap.get('id')!;
     }
@@ -41,5 +44,18 @@ export class VerPartidoComponent implements OnInit {
     }, error => {
       console.log("Error al obtener el partido", error);
     });
-  }  
+  }
+
+  viewOnMap() {
+    if (!this.partido?.lat || !this.partido?.lng) return;
+    this.dialog.open(MapDialogComponent, {
+      width: '500px',
+      data: {
+        lat: this.partido.lat,
+        lng: this.partido.lng,
+        editable: false
+      }
+    });
+  }
+  
 }

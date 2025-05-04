@@ -27,12 +27,22 @@
       </li>
     </ul>
     <ul class="navbar-nav ms-auto">
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="!auth.isLogged()">
         <a class="nav-link d-flex align-items-center" routerLink="/login">
-          <i class="bi bi-person-fill me-2"></i>
-          Iniciar sesión
+          <i class="bi bi-person-fill me-2"></i> Iniciar sesión
         </a>
       </li>
+
+      <li class="nav-item dropdown" *ngIf="auth.isLogged()">
+        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">
+          <i class="bi bi-person-circle"></i>
+          {{ auth.currentUser?.nombre }}
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" (click)="openLogoutConfirm()">Cerrar sesión</a></li>
+        </ul>
+      </li>
+      
     </ul>
   </div>
 </nav>

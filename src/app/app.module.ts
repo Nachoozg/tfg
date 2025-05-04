@@ -32,6 +32,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ModalConfirmacionComponent } from './modal-confirmacion/modal-confirmacion.component';
+import { MapDialogComponent } from './map-dialog/map-dialog.component';
 
 
 @NgModule({
@@ -51,7 +53,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     VerPartidoComponent,
     ModalPartidoComponent,
     LoginComponent,
-    RegistroComponent
+    RegistroComponent,
+    ModalConfirmacionComponent,
+    MapDialogComponent
   ],
   imports: [
     BrowserModule,

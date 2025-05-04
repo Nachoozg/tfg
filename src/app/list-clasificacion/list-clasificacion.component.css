@@ -1,59 +1,93 @@
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 1050;
+.circulo {
+  display: inline-block;
+  width: 1.2rem;
+  height: 1.2rem;
+  line-height: 1.2rem;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  text-align: center;
+  margin-right: 0.25rem;
+  color: white;
+}
+
+.ganado {
+  background-color: #28a745;
+}
+
+.perdido {
+  background-color: #dc3545;
+}
+
+.pendiente {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+.detalle-container {
   display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: #f9f9f9;
+}
+
+.inner-table {
+  flex: 1;
+  margin: 0;
+  background: white;
+  border-radius: 0.25rem;
+}
+
+.inner-table th {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.inner-table td {
+  font-size: 0.85rem;
+  vertical-align: middle;
+}
+
+.estadistica-panel {
+  width: 8rem;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.modal-dialog {
-  background: #fff;
-  border-radius: 5px;
-  max-width: 500px;
-  width: 90%;
-  padding: 20px;
+.circular-chart {
+  max-width: 4rem;
+  max-height: 4rem;
+  margin-bottom: 0.5rem;
 }
 
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.circular-chart .fondo {
+  fill: none;
+  stroke: #eee;
+  stroke-width: 3.8;
 }
 
-.modal-title {
-  margin: 0;
-  font-size: 1.2em;
+.circular-chart .progreso {
+  fill: none;
+  stroke: #007bff;
+  stroke-width: 3.8;
+  stroke-linecap: round;
+  transition: stroke-dasharray 0.6s ease 0s;
 }
 
-.close {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
+.circular-chart .texto {
+  fill: #333;
+  font-size: 0.6rem;
+  text-anchor: middle;
 }
 
-table {
-  border-collapse: collapse;
-  width: 60%;
-  margin: 20px auto;
-  font-family: Arial, sans-serif;
+.clasif-table th,
+.clasif-table td {
+  vertical-align: middle;
 }
-th,
-td {
-  border: 1px solid #ccc;
-  padding: 8px 12px;
+
+.td-toggle {
+  width: 1.5rem;
   text-align: center;
-}
-th {
-  background-color: #f2f2f2;
-}
-caption {
-  font-size: 1.2em;
-  margin-bottom: 10px;
-  font-weight: bold;
+  cursor: pointer;
 }
