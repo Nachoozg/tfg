@@ -1,48 +1,122 @@
-.custom-form {
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: #fafafa;
+}
+
+.login-contenedor {
+  display: flex;
+  width: clamp(300px, 80vw, 90vh);
+  aspect-ratio: 1 / 1;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 30px 20px rgba(0,0,0,0.1);
+}
+
+.login-imagen {
+  flex: 1;
+  background: url("/assets/raquetaTenis.jpg") no-repeat center center;
+  background-size: cover;
+}
+
+.login-formulario {
+  flex: 1;
+  background-color: #eeecec;
+  padding: 2rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.btn-volver {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 1.1rem;
+  color: #59c465;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.btn-volver:hover {
+  color: #4ea85d;
+}
+
+.custom-form h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.custom-form .form-control {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.custom-form .form-control:focus {
+  outline: none;
+  border-color: #59c465;
+  box-shadow: 0 0 0 3px rgba(89,196,101,0.15);
+}
+
+.btn-inicio {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #59c465;
+  color: black;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  margin-bottom: 1rem;
+}
+
+.btn-inicio:hover {
+  background-color: #4ea85d;
+  transform: translateY(-1px);
+}
+
+.btn-inicio:active {
+  transform: translateY(0);
+}
+
+.link-registro {
+  display: block;
+  text-align: center;
+  color: #59c465;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: color 0.2s;
+  font-weight: 400;
+}
+
+.link-registro:hover {
+  color: #4ea85d;
+  text-decoration: underline;
+}
+
+@media (max-width: 767px) {
+  .login-contenedor {
+    flex-direction: column;
+    width: 90vw;
     max-width: 400px;
-    margin: 10rem auto 2rem;
-    padding: 2rem;
-    background: #eceaea;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    aspect-ratio: auto;
+  }
+  .login-imagen {
+    height: 180px;
+  }
+  .login-formulario {
+    padding: 1.5rem;
+  }
 }
-
-.custom-form input {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    margin-bottom: 1rem;
-    font-size: 0.95rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    transition: border-color 0.2s ease-in-out, box-shadow 0.2s;
-}
-.custom-form input:focus {
-    border-color: #59c465;
-    box-shadow: 0 0 0 3px rgba(89,196,101,0.15);
-    outline: none;
-}
-
-.custom-form button {
-    width: 100%;
-    padding: 0.75rem;
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: #fff;
-    background-color: #59c465;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-    margin-top: 0.5rem;
-}
-.custom-form button:hover {
-    background-color: #4ea85d;
-}
-
-.custom-form button.volver {
-    background-color: #90a8aa;
-}
-.custom-form button.volver:hover {
-    background-color: #7c8a8b;
-}
-    

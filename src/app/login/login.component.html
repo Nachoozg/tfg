@@ -1,12 +1,31 @@
-<div class="login">
-  <form class="custom-form" [formGroup]="loginForm" (ngSubmit)="iniciarSesion()"> 
-    <h1>Inicio de Sesión</h1>
+<div class="login-contenedor">
+  <div class="login-imagen"></div>
 
-    <input formControlName="mail" type="email" class="form-control" placeholder="Email"/>
+  <div class="login-formulario">
+    <button class="btn-volver" (click)="router.navigate(['/'])">
+      ← Volver
+    </button>
 
-    <input formControlName="password" type="password" class="form-control" placeholder="Contraseña"/>
+    <form class="custom-form" [formGroup]="loginForm" (ngSubmit)="iniciarSesion()">
+      <h1>Inicio de Sesión</h1>
 
-    <button class="inicio mb-3" type="submit">Iniciar Sesión</button>
-    <a routerLink="/registro">¿No tienes cuenta? Regístrate.</a>
-  </form>
+      <input formControlName="mail"
+             type="email"
+             class="form-control"
+             placeholder="Correo electrónico"/>
+
+      <input formControlName="password"
+             type="password"
+             class="form-control"
+             placeholder="Contraseña"/>
+
+      <button class="btn-inicio" type="submit">
+        Iniciar Sesión
+      </button>
+
+      <a class="link-registro" routerLink="/registro">
+        ¿No tienes cuenta? Regístrate.
+      </a>
+    </form>
+  </div>
 </div>

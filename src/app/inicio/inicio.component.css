@@ -1,73 +1,142 @@
-.partidos {
-    display: flex;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: rgb(151, 255, 109);
-    color: black;
-    border-radius: 10px;
-    padding: 10px;
-    border: none !important;
-    box-shadow: none !important;
+.seccion-bienvenida {
+  margin-bottom: 1.5rem;
 }
 
-.partidos:hover {
-    background-color: rgb(86, 245, 24);
+.texto-bienvenida {
+  background-color: #c7ff52;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.titulo-bienvenida {
+  font-family: "Arial Black", sans-serif;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #111;
+}
+
+.desc-bienvenida {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #222;
+}
+
+.imagen-bienvenida {
+  background-color: #e6ffe6;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.imagen-bienvenida img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.boton-neon {
+  background-color: #86f518;
+  color: #111;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1.2rem;
+  box-shadow: 0 2px 6px rgba(134, 245, 24, 0.6);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.boton-neon:hover {
+  background-color: #b7ff4d;
+  box-shadow: 0 4px 12px rgba(134, 245, 24, 0.8);
+  transform: translateY(-1px);
+}
+
+.contenedor-calendario {
+  background-color: #d1d1d1;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 1rem;
+  margin-bottom: 6rem;
+}
+
+.contenedor-calendario ::ng-deep .fc {
+  width: 100%;
+}
+
+.contenedor-calendario ::ng-deep .fc-toolbar-title {
+  color: #222 !important;
+  font-weight: 600;
+}
+
+.contenedor-calendario ::ng-deep .fc-button {
+  background-color: #343a40 !important;
+  color: #fff !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.contenedor-calendario ::ng-deep .fc-button:hover {
+  background-color: #495057 !important;
+}
+
+.contenedor-calendario ::ng-deep .fc-col-header-cell-cushion {
+  color: #333 !important;
+  text-transform: capitalize;
+}
+
+.contenedor-calendario ::ng-deep .fc-col-header-cell {
+  background-color: #6c757d !important;
+}
+
+.contenedor-calendario ::ng-deep .fc-daygrid-day {
+  background-color: #e5e5e5;
+  border: 1px solid #ccc;
+}
+
+.contenedor-calendario ::ng-deep .fc-daygrid-day.fc-day-past {
+  background-color: #c0c0c0 !important;
+}
+
+.contenedor-calendario ::ng-deep .fc-daygrid-day.fc-day-today {
+  background-color: #adb5bd !important;
+}
+
+.contenedor-calendario ::ng-deep .fc-daygrid-day-number {
+  color: #222 !important;
+}
+
+.contenedor-calendario ::ng-deep .fc-event {
+  background-color: #86f518 !important;
+  color: #111 !important;
+  border: none !important;
+}
+
+.btn-calendario {
+  display: inline-block;
+  background-color: #343a40;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1.4rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.btn-calendario:hover {
+  background-color: #495057;
+  transform: translateY(-1px);
 }
 
 .medio {
-    display: flex;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20px;
-}
-
-::ng-deep .fc-button.fc-prev-button, 
-::ng-deep .fc-button.fc-next-button {
-    background-color: rgb(151, 255, 109) !important;
-    color: white !important;
-    border: none !important;
-    box-shadow: none !important;
-}
-
-::ng-deep .fc-col-header-cell-cushion {
-    color: black !important;
-    text-transform: capitalize;
-}
-
-::ng-deep .fc-col-header-cell {
-    background-color: rgb(72, 255, 0) !important;
-}
-
-::ng-deep .fc-button.fc-prev-button:hover, 
-::ng-deep .fc-button.fc-next-button:hover {
-    background-color: rgb(86, 245, 24) !important;
-}
-
-::ng-deep .fc-toolbar-title {
-    text-transform: capitalize;
-    color: black;
-}
-
-:host ::ng-deep .fc-daygrid-day {
-    border: 1px solid #ccc;
-}
-
-::ng-deep .fc-daygrid-day-number {
-    color: black !important;
-}
-
-::ng-deep .fc-daygrid-day.fc-day-today {
-    background-color: rgb(151, 255, 109) !important;
-}
-
-::ng-deep .fc-daygrid-day.fc-day-past {
-    background-color: rgb(121, 121, 121) !important;
-}
-
-::ng-deep .fc-daygrid-day.fc-day-future {
-    background-color: rgb(221, 228, 219) !important;
-}
-
-::ng-deep .fc-event {
-    cursor: pointer;
+  display: flex;
+  justify-content: center;
+  margin-top: 1.25rem;
 }

@@ -1,21 +1,59 @@
-<div class="registro">
-  <form class="custom-form" [formGroup]="agregarUsuario" (ngSubmit)="registro()">
-    <h1>Registro</h1>
-    <input formControlName="nombre" placeholder="Nombre">
-    <input formControlName="apellidos" placeholder="Apellidos">
-    <input formControlName="mail" type="email" placeholder="Email">
-    <input formControlName="password" type="password" placeholder="Contraseña">
-    <input formControlName="confPassword" type="password" placeholder="Confirmar contraseña">
+<div class="registro-contenedor">
+  <!-- Panel izquierdo: imagen (reutiliza raquetaTenis o la que quieras) -->
+  <div class="registro-imagen"></div>
 
-    <label for="rolId">Quiero registrarme como:</label>
-    <select formControlName="rolId" id="rolId" class="form-control mb-3">
-      <option [value]="null" disabled>-- Elige un rol --</option>
-      <option *ngFor="let r of roles" [value]="r.id">
-        {{ r.nombre }}
-      </option>
-    </select>
-    
-    <button type="submit">Registrarse</button>
-    <button class="volver" type="button" routerLink="/login">Volver</button>
-  </form>
+  <!-- Panel derecho: formulario -->
+  <div class="registro-formulario">
+    <!-- Botón Volver -->
+    <button class="btn-volver" (click)="router.navigate(['/'])">
+      ← Volver
+    </button>
+
+    <form class="custom-form"
+          [formGroup]="agregarUsuario"
+          (ngSubmit)="registro()">
+
+      <h1>Registro</h1>
+
+      <input formControlName="nombre" 
+             type="text"
+             placeholder="Nombre"/>
+
+      <input formControlName="apellidos" 
+             type="text"
+             placeholder="Apellidos"/>
+
+      <input formControlName="mail"
+             type="email"
+             placeholder="Correo electrónico"/>
+
+      <input formControlName="password"
+             type="password"
+             placeholder="Contraseña"/>
+
+      <input formControlName="confPassword"
+             type="password"
+             placeholder="Confirmar contraseña"/>
+
+      <label for="rolId">Quiero registrarme como:</label>
+      <select formControlName="rolId"
+              id="rolId"
+              class="form-control mb-3">
+        <option [value]="null" disabled>-- Elige un rol --</option>
+        <option *ngFor="let r of roles" [value]="r.id">
+          {{ r.nombre }}
+        </option>
+      </select>
+
+      <!-- Botón principal en verde -->
+      <button class="btn-registrarse" type="submit">
+        Registrarse
+      </button>
+
+      <!-- Volver alternativamente -->
+      <button class="btn-volver-form" type="button" routerLink="/login">
+        Volver al inicio
+      </button>
+    </form>
+  </div>
 </div>

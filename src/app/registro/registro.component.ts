@@ -19,7 +19,7 @@ export class RegistroComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private _usuarioService: UsuarioService,
               private _rolService: RolService,
-              private router: Router,
+              public router: Router,
               private toastr: ToastrService
              ) {
     this.agregarUsuario = this.fb.group({

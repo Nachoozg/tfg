@@ -19,7 +19,7 @@ export class LoginComponent{
     private fb: FormBuilder,
     private usuarioService: UsuarioService,
     private auth: AuthService,
-    private router: Router,
+    public router: Router,
     private toastr: ToastrService
   ) {
     this.loginForm = this.fb.group({

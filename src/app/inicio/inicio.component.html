@@ -1,12 +1,38 @@
 <app-navbar></app-navbar>
-<div class="container" style="margin-top: 50px">
-  <h2 class="text-center mt-5 mb-5">Próximos Partidos</h2>
 
-  <full-calendar [options]="calendarOptions"></full-calendar>
+<div class="container my-5">
 
-  <div class="medio col-lg-6">
-    <button class="partidos mt-5 mb-5" routerLink="/Partidos">
-      Ver más información sobre los partidos
-    </button>
+  <div class="row seccion-bienvenida g-4">
+    <div class="col-md-8 d-flex">
+      <div class="caja texto-bienvenida flex-fill p-4">
+        <h1 class="titulo-bienvenida">
+          Bienvenido a web de la Liga de Tenis de Colegios de Burgos
+        </h1>
+        <p class="desc-bienvenida">
+          Aquí encontrarás toda la información de nuestra competición: próximos partidos,
+          clasificación actualizada, colegios participantes y el listado de jugadores.
+          Mantente al día con cada punto y cada partido.
+        </p>
+      </div>
+    </div>
+
+    <div class="col-md-4 d-flex">
+      <div class="caja imagen-bienvenida flex-fill p-0">
+        <img
+          src="/assets/pistaTenis.jpg"
+          alt="Pista de tenis"
+          class="img-fluid"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="contenedor-calendario p-4 bg-calendario">
+    <h2 class="text-center mb-4">Próximos Partidos</h2>
+    <full-calendar [options]="calendarOptions"></full-calendar>
+    <div class="medio col-lg-6 mx-auto">
+      <button class="btn-calendario mt-4 mb-2" routerLink="/Partidos">
+        Ver más información sobre los partidos
+      </button>
+    </div>
   </div>
 </div>

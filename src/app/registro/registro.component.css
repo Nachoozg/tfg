@@ -1,48 +1,137 @@
-.custom-form {
-    max-width: 400px;
-    margin: 10rem auto 2rem;
-    padding: 2rem;
-    background: #eceaea;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #fafafa;
 }
 
-.custom-form input {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    margin-bottom: 1rem;
-    font-size: 0.95rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    transition: border-color 0.2s ease-in-out, box-shadow 0.2s;
-}
-.custom-form input:focus {
-    border-color: #59c465;
-    box-shadow: 0 0 0 3px rgba(89,196,101,0.15);
-    outline: none;
+.registro-contenedor {
+  display: flex;
+  width: clamp(300px, 80vw, 90vh);
+  aspect-ratio: 1 / 1;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 30px 20px rgba(0, 0, 0, 0.1);
 }
 
-.custom-form button {
-    width: 100%;
-    padding: 0.75rem;
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: #fff;
-    background-color: #59c465;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-    margin-top: 0.5rem;
-}
-.custom-form button:hover {
-    background-color: #4ea85d;
+.registro-imagen {
+  flex: 1;
+  background: url("/assets/raquetaTenis.jpg") no-repeat center center;
+  background-size: cover;
 }
 
-.custom-form button.volver {
-    background-color: #90a8aa;
+.registro-formulario {
+  flex: 1;
+  background-color: #f3f3f3;
+  padding: 2rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-.custom-form button.volver:hover {
-    background-color: #7c8a8b;
+
+.btn-volver {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+  color: #59c465;
+  cursor: pointer;
+  transition: color 0.2s;
 }
-  
+
+.btn-volver:hover {
+  color: #4ea85d;
+}
+
+.custom-form h1 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: #333;
+  font-weight: 600;
+}
+
+.custom-form input,
+.custom-form select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.custom-form input:focus,
+.custom-form select:focus {
+  outline: none;
+  border-color: #59c465;
+  box-shadow: 0 0 0 3px rgba(89, 196, 101, 0.15);
+}
+
+.btn-registrarse {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #59c465;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  margin-bottom: 1rem;
+}
+
+.btn-registrarse:hover {
+  background-color: #4ea85d;
+  transform: translateY(-1px);
+}
+
+.btn-registrarse:active {
+  transform: translateY(0);
+}
+
+.btn-volver-form {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #90a8aa;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-volver-form:hover {
+  background-color: #7c8a8b;
+}
+
+.custom-form a {
+  display: block;
+  text-align: center;
+  margin-top: 0.5rem;
+  color: #59c465;
+  text-decoration: none;
+}
+
+.custom-form a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 767px) {
+    .registro-contenedor {
+      flex-direction: column;
+      aspect-ratio: auto;
+      width: 90%;
+    }
+    .registro-imagen {
+      height: 180px;
+    }
+    .registro-formulario {
+      padding: 1.5rem;
+    }
+  }
