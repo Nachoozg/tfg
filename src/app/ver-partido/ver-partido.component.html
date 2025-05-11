@@ -1,37 +1,56 @@
 <app-navbar></app-navbar>
-<div class="container text-center">
-    <div *ngIf="partido !== undefined">
-        <h3 class="mt-5">{{ partido.fecha | date: "dd/MM/yyyy"}}
-            <span>
-                {{ partido.nombreLocal }} vs {{ partido.nombreVisitante }}
-            </span>
-        </h3>
-        <hr>
-        <h5 class="mb-5">Partido de baloncesto</h5>
-        <div>
-            <ul>
-                <li class="mb-2"> <strong>Fecha:</strong> {{ partido.fecha | date: "dd/MM/yyyy" }} </li>
-                <li class="mb-2"> <strong>Lugar: </strong> {{ partido.lugar }} </li>
-                <li class="mb-2"> <strong>Detalles: </strong> {{ partido.detalles }} </li>
-                <li class="mb-2"> <strong>Resultado: </strong> 
-                    <span *ngIf="partido.resultadoLocal !== null && partido.resultadoVisitante !== null">
-                        {{ partido.nombreLocal }} {{ partido.resultadoLocal }} - {{ partido.nombreVisitante }} {{ partido.resultadoVisitante }}
-                    </span>
-                    <span *ngIf="partido.resultadoLocal === null || partido.resultadoVisitante === null">
-                        Partido no jugado aún
-                    </span>
-                </li>
-            </ul>
-        </div>
 
-        <div class="mb-3">
-            <button *ngIf="partido?.lat" class="btn btn-outline-primary me-2" (click)="viewOnMap()">
-              Ver ubicación
-            </button>
-        </div>
-        
-        <div class="text-center">
-            <button type="button" routerLink="/Partidos" class="volver btn btn-secondary">Volver</button>
-        </div>
+<div class="perfil-partido" *ngIf="partido">
+  <div class="encabezado-partido">
+    <h2 class="titulo-partido">
+      {{ partido.fecha | date : "dd/MM/yyyy" }}
+    </h2>
+    <p class="equipos-partido">
+      {{ partido.nombreLocal }} vs {{ partido.nombreVisitante }}
+    </p>
+  </div>
+
+  <div class="detalles-partido">
+    <div class="elemento-detalle">
+      <span class="etiqueta">Fecha</span>
+      <span class="valor">{{ partido.fecha | date : "dd/MM/yyyy" }}</span>
     </div>
+    <div class="elemento-detalle">
+      <span class="etiqueta">Lugar</span>
+      <span class="valor">{{ partido.lugar }}</span>
+    </div>
+    <div class="elemento-detalle">
+      <span class="etiqueta">Detalles</span>
+      <span class="valor">{{ partido.detalles }}</span>
+    </div>
+    <div class="elemento-detalle">
+      <span class="etiqueta">Resultado</span>
+      <span class="valor">
+        <ng-container
+          *ngIf="
+            partido.resultadoLocal !== null &&
+              partido.resultadoVisitante !== null;
+            else noJugado
+          "
+        >
+          {{ partido.nombreLocal }} {{ partido.resultadoLocal }} –
+          {{ partido.nombreVisitante }} {{ partido.resultadoVisitante }}
+        </ng-container>
+        <ng-template #noJugado>Partido no jugado aún</ng-template>
+      </span>
+    </div>
+  </div>
+
+  <div class="botones-partido">
+    <button
+      *ngIf="partido.lat"
+      class="btn btn-outline-primary boton-ubicacion"
+      (click)="viewOnMap()"
+    >
+      Ver ubicación
+    </button>
+    <button class="btn btn-secondary boton-volver" routerLink="/Partidos">
+      Volver
+    </button>
+  </div>
 </div>

@@ -1,0 +1,83 @@
+.container {
+  max-width: 500px;
+  margin: 3rem auto;
+  background: #fff;
+  padding: 2rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+.container h3 {
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+}
+
+.form-label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.form-control {
+  border-radius: 6px;
+  padding: 0.6rem 0.8rem;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-control:focus {
+  border-color: #59c465;
+  box-shadow: 0 0 0 3px rgba(89,196,101,0.2);
+}
+
+.text-danger {
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+.btn-success {
+  background-color: #59c465;
+  border-color: #59c465;
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-success:disabled {
+  opacity: 0.6;
+}
+
+.btn-success:hover:not(:disabled) {
+  background-color: #4ea85d;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  margin-right: auto;
+}
+
+.btn-secondary:hover {
+  background-color: #5a5a5a;
+  border-color: #5a5a5a;
+}
+
+button[type="submit"] {
+  float: right;
+}
+
+button[routerLink="/Jugadores"] {
+  float: left;
+}
+
+form::after {
+  content: "";
+  display: table;
+  clear: both;
+}

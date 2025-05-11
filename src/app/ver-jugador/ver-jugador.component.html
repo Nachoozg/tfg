@@ -1,22 +1,30 @@
 <app-navbar></app-navbar>
-<div class="container text-center">
-    <div *ngIf="jugador !== undefined">
-        <h3 class="mt-5">{{ jugador.nombre }} {{ jugador.apellidos }}</h3>
-        <hr>
-        <h5 class="mb-5">Información sobre el jugador</h5>
-        <div *ngIf="jugador.imagenJugador">
-            <img [src]="'https://localhost:44372/' + jugador.imagenJugador" alt="{{ jugador.nombre }}" style="width:300px; height:300px; object-fit: cover;">
-        </div>
-        <div>
-            <ul>
-                <li class="mb-2"> <strong>Edad:</strong> {{ jugador.edad }} años</li>
-                <li class="mb-2"> <strong>Equipo: </strong> {{ colegios[jugador.colegioId] }} </li>
-            </ul>
-        </div>
-        
-        <div class="text-center">
-            <button type="button" routerLink="/Jugadores" class="volver btn btn-secondary">Volver</button>
-        </div>
-    
+
+<div *ngIf="jugador" class="perfil-jugador">
+  <div class="cabecera-jugador">
+    <h2 class="nombre-jugador">{{ jugador.nombre }} {{ jugador.apellidos }}</h2>
+    <div class="imagen-jugador" *ngIf="jugador.imagenJugador">
+      <img
+        [src]="'https://localhost:44372/' + jugador.imagenJugador"
+        alt="{{ jugador.nombre }}"
+      />
     </div>
+  </div>
+
+  <div class="detalles-jugador">
+    <div class="detalles">
+      <span class="label">Edad</span>
+      <span class="value">{{ jugador.edad }} años</span>
+    </div>
+    <div class="detalles">
+      <span class="label">Colegio</span>
+      <span class="value">{{ colegios[jugador.colegioId] }}</span>
+    </div>
+  </div>
+
+  <div class="footer-jugador">
+    <button class="btn btn-secondary volver" routerLink="/Jugadores">
+      Volver
+    </button>
+  </div>
 </div>

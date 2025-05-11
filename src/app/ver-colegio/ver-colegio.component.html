@@ -1,22 +1,30 @@
 <app-navbar></app-navbar>
-<div class="container text-center">
-    <div *ngIf="colegio !== undefined">
-        <h3 class="mt-5">{{ colegio.nombre }}</h3>
-        <hr>
-        <h5 class="mb-5">Colegio</h5>
-        <div *ngIf="colegio.imagenColegio">
-            <img [src]="'https://localhost:44372/' + colegio.imagenColegio" alt="{{ colegio.nombre }}" style="width:300px; height:300px; object-fit: cover;">
-        </div>
-        <div>
-            <ul>
-                <li class="mb-2"> <strong>Nombre:</strong> {{ colegio.nombre }} </li>
-                <li class="mb-2"> <strong>Numero de Jugadores: </strong> {{ colegio.numeroJugadores }} </li>
-            </ul>
-        </div>
-        
-        <div class="text-center">
-            <button type="button" routerLink="/Colegios" class="volver btn btn-secondary">Volver</button>
-        </div>
-    
+
+<div class="perfil-colegio" *ngIf="colegio">
+  <div class="encabezado-colegio">
+    <h2 class="nombre-colegio">{{ colegio.nombre }}</h2>
+    <div class="imagen-colegio" *ngIf="colegio.imagenColegio">
+      <img
+        [src]="'https://localhost:44372/' + colegio.imagenColegio"
+        alt="{{ colegio.nombre }}"
+      />
     </div>
+  </div>
+
+  <div class="detalles-colegio">
+    <div class="elemento-detalle">
+      <span class="etiqueta">Nombre</span>
+      <span class="valor">{{ colegio.nombre }}</span>
+    </div>
+    <div class="elemento-detalle">
+      <span class="etiqueta">Jugadores</span>
+      <span class="valor">{{ colegio.numeroJugadores }}</span>
+    </div>
+  </div>
+
+  <div class="footer-colegio">
+    <button class="btn btn-secondary boton-volver" routerLink="/Colegios">
+      Volver
+    </button>
+  </div>
 </div>

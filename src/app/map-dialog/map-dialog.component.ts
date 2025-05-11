@@ -10,7 +10,7 @@ import * as L from 'leaflet';
 })
 export class MapDialogComponent implements AfterViewInit {
   private map!: L.Map;
-  private marker!: L.Marker;
+  public marker!: L.Marker;
 
   constructor(
     private dialogRef: MatDialogRef<MapDialogComponent>,
@@ -51,4 +51,14 @@ export class MapDialogComponent implements AfterViewInit {
   onCancel(): void {
     this.dialogRef.close();
   }
+
+  openInMaps(): void {
+    if (!this.data.lat || !this.data.lng) {
+      return;
+    }
+    const { lat, lng } = this.data;
+    const url = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
+    window.open(url, '_blank');
+  }
+
 }

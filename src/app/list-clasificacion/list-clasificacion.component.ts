@@ -7,7 +7,6 @@ import { ColegioService }       from '../services/colegio.service';
 import { clasificacion }        from '../interfaces/clasificacion';
 import { partido }              from '../interfaces/partido';
 
-// 1) Definimos el tipo que usaremos internamente
 type FilaClasificacion = clasificacion & {
   ultimos5: ('G'|'P'|'?')[];
   porcentajeVictorias: number;
@@ -33,7 +32,6 @@ export class ListClasificacionComponent implements OnInit {
   ngOnInit(): void {
     this.clasifService.getClasificacion().subscribe({
       next: data => {
-        // 2) Al mapear cada fila le añadimos ultimos5 vacío y el porcentaje
         this.clasificacion = (data as clasificacion[]).map(f => {
           const total = f.victorias + f.derrotas;
           const pct = total > 0
