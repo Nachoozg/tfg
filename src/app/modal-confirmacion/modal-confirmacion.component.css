@@ -27,3 +27,31 @@
   gap: 8px;
   border-top: 1px solid #e0e0e0;
 }
+
+.btn-success {
+  background-color: #59c465;
+  border-color: #59c465;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-success:hover {
+  background-color: #4ea85d;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background-color: #929292;
+  border-color: #929292;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-secondary:hover {
+  background-color: #858585;
+  transform: translateY(-1px);
+}
