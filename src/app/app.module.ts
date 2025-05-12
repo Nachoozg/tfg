@@ -34,6 +34,7 @@ import { RegistroComponent } from './registro/registro.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModalConfirmacionComponent } from './modal-confirmacion/modal-confirmacion.component';
 import { MapDialogComponent } from './map-dialog/map-dialog.component';
+import { ChatWidgetComponent } from './chat-widget/chat-widget.component';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { MapDialogComponent } from './map-dialog/map-dialog.component';
     LoginComponent,
     RegistroComponent,
     ModalConfirmacionComponent,
-    MapDialogComponent
+    MapDialogComponent,
+    ChatWidgetComponent
   ],
   imports: [
     BrowserModule,

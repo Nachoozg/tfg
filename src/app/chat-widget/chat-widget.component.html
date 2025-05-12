@@ -1,0 +1,32 @@
+<button class="boton-chat" (click)="alternar()">
+  <i class="bi bi-stars"></i>
+</button>
+
+<div class="ventana-chat" [class.abierta]="estaAbierta">
+  <div class="encabezado">
+    <span>Asistente</span>
+    <button class="boton-cerrar" (click)="alternar()">✕</button>
+  </div>
+
+  <div class="cuerpo">
+    <div
+      *ngFor="let mensaje of mensajes"
+      class="envoltorio-mensaje"
+      [ngClass]="mensaje.de"
+    >
+      <div class="burbuja">
+        {{ mensaje.texto }}
+      </div>
+    </div>
+  </div>
+
+  <div class="pie">
+    <input
+      type="text"
+      [(ngModel)]="entrada"
+      (keyup.enter)="enviar()"
+      placeholder="Escribe tu pregunta…"
+    />
+    <button (click)="enviar()">Enviar</button>
+  </div>
+</div>
