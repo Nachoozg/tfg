@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,12 +11,10 @@ export class AppComponent {
   @ViewChild(RouterOutlet) outlet?: RouterOutlet;
   title = 'ligaTenis';
 
+  constructor(private router: Router) {}
+
   get isAuthRoute(): boolean {
-    const path = this.outlet
-                  ?.activatedRoute
-                  ?.snapshot
-                  ?.routeConfig
-                  ?.path;
-    return path === 'login' || path === 'registro';
+    const url = this.router.url;
+    return url.startsWith('/login') || url.startsWith('/registro');
   }
 }

@@ -27,7 +27,7 @@ export class AgregarEditarColegioComponent implements OnInit {
               private toastr: ToastrService) {
     this.agregarColegio = this.fb.group({
       nombre: ['', Validators.required],
-      numeroJugadores: ['', Validators.required],
+      numeroJugadores: [{ value: null, disabled: true }],
     });
     this.id = +this.aRoute.snapshot.paramMap.get('id')!;
   }

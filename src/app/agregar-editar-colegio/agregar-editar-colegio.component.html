@@ -10,11 +10,16 @@
       </span>
     </div>
     <div class="mb-3">
-      <label for="numeroJugadores" class="form-label">Número de Jugadores</label>
-      <input formControlName="numeroJugadores" class="form-control" id="numeroJugadores" placeholder="Añadir Número de Jugadores">
-      <span *ngIf="agregarColegio.get('numeroJugadores')?.invalid && agregarColegio.get('numeroJugadores')?.touched" class="text-danger">
-        Es obligatorio rellenar el <strong>número de jugadores</strong>.
-      </span>
+      <label for="numeroJugadores" class="form-label">
+        Número de Jugadores
+      </label>
+      <input
+        formControlName="numeroJugadores"
+        id="numeroJugadores"
+        class="form-control"
+        [disabled]="true"
+        placeholder="Se rellena automáticamente al inscribir jugadores."
+      />
     </div>
     <div class="mb-3">
       <label for="imagenColegio" class="form-label">Imagen del Colegio</label>

@@ -81,3 +81,7 @@ form::after {
   display: table;
   clear: both;
 }
+
+input[disabled] {
+  cursor: not-allowed;
+}

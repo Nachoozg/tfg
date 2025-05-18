@@ -5,7 +5,25 @@
 <div class="ventana-chat" [class.abierta]="estaAbierta">
   <div class="encabezado">
     <span>Asistente</span>
-    <button class="boton-cerrar" (click)="alternar()">✕</button>
+    <div class="encabezado-botones">
+      <!-- Botón de info -->
+      <button class="boton-info"
+              (mouseenter)="mostrarInfo()"
+              (mouseleave)="mostrarInfo()">
+        <i class="bi bi-info-circle"></i>
+      </button>
+
+      <div class="tooltip-info" [class.show]="infoVisible">
+        <strong>¿Qué puedo hacer?</strong>
+        <ul>
+          <li>Puedo responder preguntas relacionadas con la liga de tenis.</li>
+          <li>Puedo responder preguntas como "¿Cuántos equipos hay inscritos?" o "¿Que jugadores hay?"</li>
+          <li>También puedo proporcionar datos estadísticos para intentar predecir partidos que se jugarán próximamente.</li>
+        </ul>
+      </div>
+
+      <button class="boton-cerrar" (click)="alternar()">✕</button>
+    </div>
   </div>
 
   <div class="cuerpo">

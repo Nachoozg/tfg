@@ -4,10 +4,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { PartidoService } from '../services/partido.service';
 import { ColegioService } from '../services/colegio.service';
+import { JugadorService } from '../services/jugador.service';
 import { partido } from '../interfaces/partido';
 import { ClasificacionService } from '../services/clasificacion.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MapDialogComponent } from '../map-dialog/map-dialog.component';
+import { jugador } from '../interfaces/jugador';
 
 @Component({
   selector: 'app-agregar-editar-partido',
@@ -21,6 +23,8 @@ export class AgregarEditarPartidoComponent implements OnInit {
   id = 0;
   partido: any;
   colegios: any[] = [];
+  jugadoresLocal: jugador[] = [];
+  jugadoresVisitante: jugador[] = [];
   partidoPasado: boolean = false;
 
   constructor(private fb: FormBuilder,
@@ -30,13 +34,16 @@ export class AgregarEditarPartidoComponent implements OnInit {
               private router: Router,
               private dialog: MatDialog,
               private aRoute: ActivatedRoute,
-              private toastr: ToastrService) {
+              private toastr: ToastrService,
+              private _jugadorService: JugadorService) {
     this.agregarPartido = this.fb.group({
       fecha: ['', Validators.required],
       lugar: ['', Validators.required],
       detalles: ['', Validators.required],
-      localId: ['', Validators.required],
-      visitanteId: ['', Validators.required],
+      localId: [null, Validators.required],
+      jugadorLocalId: [null, Validators.required],
+      visitanteId: [null, Validators.required],
+      jugadorVisitanteId: [null, Validators.required],
       lat: [null, Validators.required],
       lng: [null, Validators.required],
       resultadoLocal: [null],
@@ -47,6 +54,7 @@ export class AgregarEditarPartidoComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargarEquipos();
+    this.colegioJugadores();
     this.esEditar();
   }
 
@@ -56,6 +64,41 @@ export class AgregarEditarPartidoComponent implements OnInit {
     }, error => {
       console.log('Error al cargar equipos', error);
     });
+  }
+
+  colegioJugadores() {
+    this.agregarPartido.get('localId')!.valueChanges
+      .subscribe(id => this.loadJugadoresLocal(id));
+    this.agregarPartido.get('visitanteId')!.valueChanges
+      .subscribe(id => this.loadJugadoresVisitante(id));
+  }
+
+  loadJugadoresLocal(colegioId: number) {
+    if (!colegioId) {
+      this.jugadoresLocal = [];
+      return this.agregarPartido.get('jugadorLocalId')!.setValue(null);
+    }
+    this._jugadorService.getListJugadores()
+      .subscribe((all: jugador[]) => {
+        this.jugadoresLocal = all.filter((j: jugador) =>
+          j.colegioId === +colegioId
+        );
+        this.agregarPartido.get('jugadorLocalId')!.setValue(null);
+      });
+  }
+
+  loadJugadoresVisitante(colegioId: number) {
+    if (!colegioId) {
+      this.jugadoresVisitante = [];
+      return this.agregarPartido.get('jugadorVisitanteId')!.setValue(null);
+    }
+    this._jugadorService.getListJugadores()
+      .subscribe((all: jugador[]) => {
+        this.jugadoresVisitante = all.filter((j: jugador) =>
+          j.colegioId === +colegioId
+        );
+        this.agregarPartido.get('jugadorVisitanteId')!.setValue(null);
+      });
   }
 
   esEditar() {
@@ -74,6 +117,12 @@ export class AgregarEditarPartidoComponent implements OnInit {
           lat: data.lat,
           lng: data.lng
         });
+        this.loadJugadoresLocal(data.localId);
+        this.loadJugadoresVisitante(data.visitanteId);
+        this.agregarPartido.patchValue({
+          jugadorLocalId:     data.jugadorLocalId,
+          jugadorVisitanteId: data.jugadorVisitanteId
+        });
         this.partidoPasado = new Date(data.fecha) < new Date();
       }, error => {
         console.log(error);
@@ -90,6 +139,8 @@ export class AgregarEditarPartidoComponent implements OnInit {
         detalles: this.agregarPartido.get('detalles')?.value,
         localId: this.agregarPartido.get('localId')?.value,
         visitanteId: this.agregarPartido.get('visitanteId')?.value,
+        jugadorLocalId: this.agregarPartido.get('jugadorLocalId')!.value,
+        jugadorVisitanteId: this.agregarPartido.get('jugadorVisitanteId')!.value,
         lat: this.agregarPartido.value.lat,
         lng: this.agregarPartido.value.lng,
         resultadoLocal: this.agregarPartido.get('resultadoLocal')?.value,

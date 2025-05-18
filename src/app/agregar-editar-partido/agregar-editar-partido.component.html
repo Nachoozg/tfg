@@ -24,26 +24,56 @@
             </span>
         </div>
 
-        <div class="mb-3">
-            <label for="localId" class="form-label">Colegio local</label>
-            <select formControlName="localId" class="form-control" id="localId">
-                <option value="">Seleccionar colegio local</option>
-                <option *ngFor="let colegio of colegios" [value]="colegio.id">{{ colegio.nombre }}</option>
-            </select>
-            <span *ngIf="agregarPartido.get('localId')?.invalid && agregarPartido.get('localId')?.touched" class="text-danger">
-                Es obligatorio seleccionar el colegio <strong>local</strong>.
-            </span>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="localId" class="form-label">Colegio local</label>
+                <select formControlName="localId" class="form-control" id="localId">
+                    <option value="">Seleccionar colegio local</option>
+                    <option *ngFor="let colegio of colegios" [value]="colegio.id">{{ colegio.nombre }}</option>
+                </select>
+                <span *ngIf="agregarPartido.get('localId')?.invalid && agregarPartido.get('localId')?.touched" class="text-danger">
+                    Es obligatorio seleccionar el colegio <strong>local</strong>.
+                </span>
+            </div>
+
+            <div class="col-md-6" *ngIf="jugadoresLocal.length > 0">
+                <label for="jugadorLocalId" class="form-label">Jugador local</label>
+                <select formControlName="jugadorLocalId" class="form-control" id="jugadorLocalId">
+                    <option [ngValue]="null">Seleccionar jugador local</option>
+                    <option *ngFor="let j of jugadoresLocal" [ngValue]="j.id">
+                    {{ j.nombre }} {{ j.apellidos }}
+                    </option>
+                </select>
+                <span *ngIf="agregarPartido.get('jugadorLocalId')?.invalid && agregarPartido.get('jugadorLocalId')?.touched" class="text-danger">
+                    Es obligatorio seleccionar un <strong>jugador local</strong>.
+                </span>
+            </div>
         </div>
 
-        <div class="mb-3">
-            <label for="visitanteId" class="form-label">Colegio visitante</label>
-            <select formControlName="visitanteId" class="form-control" id="visitanteId">
-                <option value="">Seleccionar colegio visitante</option>
-                <option *ngFor="let colegio of colegios" [value]="colegio.id">{{ colegio.nombre }}</option>
-            </select>
-            <span *ngIf="agregarPartido.get('visitanteId')?.invalid && agregarPartido.get('visitanteId')?.touched" class="text-danger">
-                Es obligatorio seleccionar el colegio <strong>visitante</strong>.
-            </span>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="visitanteId" class="form-label">Colegio visitante</label>
+                <select formControlName="visitanteId" class="form-control" id="visitanteId">
+                    <option value="">Seleccionar colegio visitante</option>
+                    <option *ngFor="let colegio of colegios" [value]="colegio.id">{{ colegio.nombre }}</option>
+                </select>
+                <span *ngIf="agregarPartido.get('visitanteId')?.invalid && agregarPartido.get('visitanteId')?.touched" class="text-danger">
+                    Es obligatorio seleccionar el colegio <strong>visitante</strong>.
+                </span>
+            </div>
+
+            <div class="col-md-6" *ngIf="jugadoresVisitante.length > 0">
+                <label for="jugadorVisitanteId" class="form-label">Jugador visitante</label>
+                <select formControlName="jugadorVisitanteId" class="form-control" id="jugadorVisitanteId">
+                    <option [ngValue]="null">Seleccionar jugador visitante</option>
+                    <option *ngFor="let j of jugadoresVisitante" [ngValue]="j.id">
+                    {{ j.nombre }} {{ j.apellidos }}
+                    </option>
+                </select>
+                <span *ngIf="agregarPartido.get('jugadorVisitanteId')?.invalid && agregarPartido.get('jugadorVisitanteId')?.touched" class="text-danger">
+                    Es obligatorio seleccionar un <strong>jugador visitante</strong>.
+                </span>
+            </div>
         </div>
 
         <div class="mb-3">

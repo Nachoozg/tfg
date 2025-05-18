@@ -39,12 +39,12 @@
           </span>
         </td>
         <td style="width: 10%;">
-          <button [routerLink]="['/editarPartido', partido.id]" class="btn btn-primary" *ngIf="auth.isArbitro() || auth.isAdmin()">
+          <button [routerLink]="['/editarPartido', partido.id]" class="btn btn-primary btn-sm" *ngIf="auth.isArbitro() || auth.isAdmin()">
             Editar
           </button>
         </td>
         <td style="width: 10%;">
-          <button (click)="eliminarPartido(partido.id)" class="btn btn-danger" *ngIf="auth.isArbitro() || auth.isAdmin()">
+          <button (click)="eliminarPartido(partido.id)" class="btn btn-danger btn-sm" *ngIf="auth.isArbitro() || auth.isAdmin()">
             Eliminar
           </button>
         </td>

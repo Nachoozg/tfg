@@ -5,6 +5,8 @@ export interface partido {
     detalles: string;
     localId: number;
     visitanteId: number;
+    jugadorLocalId?: number;
+    jugadorVisitanteId?: number;
     resultadoLocal?: number;
     resultadoVisitante?: number;
     lat?: number;

@@ -4,6 +4,7 @@ import { jugador } from '../interfaces/jugador';
 import { colegio } from '../interfaces/colegio';
 import { JugadorService } from '../services/jugador.service';
 import { ColegioService } from '../services/colegio.service';
+import { JugadorEstadisticas } from '../interfaces/jugador-estadisticas';
 
 @Component({
   selector: 'app-ver-jugador',
@@ -15,6 +16,14 @@ export class VerJugadorComponent implements OnInit {
   id: number;
   jugador: jugador | undefined;
   colegios: { [id: number]: string } = {};
+
+  stats: JugadorEstadisticas = {
+    jugadorId: 0,
+    partidosJugados: 0,
+    victorias: 0,
+    derrotas: 0,
+    porcentajeVictoria: 0
+  };
 
   constructor(
     private aRoute: ActivatedRoute, 
@@ -32,6 +41,7 @@ export class VerJugadorComponent implements OnInit {
     this._jugadorService.getJugador(this.id).subscribe(data => {
       this.jugador = data;
       this.cargarColegio();
+      this.getEstadisticas();
     });
   }
 
@@ -44,4 +54,11 @@ export class VerJugadorComponent implements OnInit {
       });
     }
   }
+
+  getEstadisticas() {
+    this._jugadorService.getStatsJugador(this.id)
+      .subscribe(s => this.stats = s,
+                 err => console.error(err));
+  }
+
 }

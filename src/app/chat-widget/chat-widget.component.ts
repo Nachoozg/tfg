@@ -16,6 +16,7 @@ export class ChatWidgetComponent {
   estaAbierta = false;
   entrada = '';
   mensajes: Mensaje[] = [];
+  infoVisible = false;
 
   constructor(private servicioChat: ChatService) {}
 
@@ -42,5 +43,9 @@ export class ChatWidgetComponent {
           texto: 'Error al conectar con el bot.'
         })
     });
+  }
+
+  mostrarInfo() {
+    this.infoVisible = !this.infoVisible;
   }
 }

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { jugador } from '../interfaces/jugador';
+import { JugadorEstadisticas } from '../interfaces/jugador-estadisticas';
 
 @Injectable({
   providedIn: 'root'
@@ -39,5 +40,9 @@ export class JugadorService {
   
   uploadImage(formData: FormData): Observable<any> {
     return this.http.post(this.myAppUrl + this.myApiUrl + 'upload', formData);
+  }
+
+  getStatsJugador(id: number) {
+  return this.http.get<JugadorEstadisticas>(`${this.myAppUrl}api/EstadisticasJugador/jugador/${id}`);
   }
 }
