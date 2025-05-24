@@ -2,116 +2,117 @@
 
 <div class="tabla-envolvente">
   <h2 class="titulo-clasificacion">Tabla de Clasificación</h2>
-
-  <table class="tabla-colegios tabla-clasificacion">
-    <thead>
-      <tr>
-        <th></th>
-        <th>Colegio</th>
-        <th>PJ</th>
-        <th>V</th>
-        <th>D</th>
-        <th>Puntos</th>
-        <th>Últimos 5</th>
-      </tr>
-    </thead>
-    <tbody>
-      <ng-container *ngFor="let item of clasificacion">
+  <div class="table-responsive">
+    <table class="tabla-colegios tabla-clasificacion">
+      <thead>
         <tr>
-          <td class="celda-desplegable">
-            <i
-              class="bi"
-              [ngClass]="{
-                'bi-chevron-down': selectedTeamId === item.equipoId,
-                'bi-chevron-right': selectedTeamId !== item.equipoId
-              }"
-              (click)="alternarFila(item.equipoId)"
-            ></i>
-          </td>
-          <td>{{ item.nombreEquipo }}</td>
-          <td>{{ item.partidosJugados }}</td>
-          <td>{{ item.victorias }}</td>
-          <td>{{ item.derrotas }}</td>
-          <td>{{ item.puntos }}</td>
-          <td class="ultimos-cinco">
-            <ng-container *ngIf="item.ultimos5.length; else sinDatos">
-              <span
-                *ngFor="let r of item.ultimos5"
-                class="circulo"
-                [class.ganado]="r === 'G'"
-                [class.perdido]="r === 'P'"
-                [class.pendiente]="r === '?'"
-              >
-                {{ r }}
-              </span>
-            </ng-container>
-            <ng-template #sinDatos>—</ng-template>
-          </td>
+          <th></th>
+          <th>Colegio</th>
+          <th>PJ</th>
+          <th>V</th>
+          <th>D</th>
+          <th>Puntos</th>
+          <th>Últimos 5</th>
         </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let item of clasificacion">
+          <tr>
+            <td class="celda-desplegable">
+              <i
+                class="bi"
+                [ngClass]="{
+                  'bi-chevron-down': selectedTeamId === item.equipoId,
+                  'bi-chevron-right': selectedTeamId !== item.equipoId
+                }"
+                (click)="alternarFila(item.equipoId)"
+              ></i>
+            </td>
+            <td>{{ item.nombreEquipo }}</td>
+            <td>{{ item.partidosJugados }}</td>
+            <td>{{ item.victorias }}</td>
+            <td>{{ item.derrotas }}</td>
+            <td>{{ item.puntos }}</td>
+            <td class="ultimos-cinco">
+              <ng-container *ngIf="item.ultimos5.length; else sinDatos">
+                <span
+                  *ngFor="let r of item.ultimos5"
+                  class="circulo"
+                  [class.ganado]="r === 'G'"
+                  [class.perdido]="r === 'P'"
+                  [class.pendiente]="r === '?'"
+                >
+                  {{ r }}
+                </span>
+              </ng-container>
+              <ng-template #sinDatos>—</ng-template>
+            </td>
+          </tr>
 
-        <!-- Detalle desplegable -->
-        <tr *ngIf="selectedTeamId === item.equipoId">
-          <td colspan="7" class="sin-padding">
-            <div class="contenedor-detalle">
-              <table class="tabla-interna">
-                <thead>
-                  <tr>
-                    <th>Fecha</th>
-                    <th>Rival</th>
-                    <th>Cómo</th>
-                    <th>Resultado</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let m of partidosEquipo">
-                    <td>{{ m.fecha | date:'dd/MM/yyyy' }}</td>
-                    <td>
-                      {{
-                        m.localId === item.equipoId
-                          ? m.visitanteNombre
-                          : m.localNombre
-                      }}
-                    </td>
-                    <td>
-                      {{ m.localId === item.equipoId ? 'Local' : 'Visitante' }}
-                    </td>
-                    <td>
-                      <ng-container
-                        *ngIf="m.resultadoLocal != null && m.resultadoVisitante != null; else sinResultado"
-                      >
+          <!-- Detalle desplegable -->
+          <tr *ngIf="selectedTeamId === item.equipoId">
+            <td colspan="7" class="sin-padding">
+              <div class="contenedor-detalle">
+                <table class="tabla-interna">
+                  <thead>
+                    <tr>
+                      <th>Fecha</th>
+                      <th>Rival</th>
+                      <th>Cómo</th>
+                      <th>Resultado</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let m of partidosEquipo">
+                      <td>{{ m.fecha | date:'dd/MM/yyyy' }}</td>
+                      <td>
                         {{
                           m.localId === item.equipoId
-                            ? m.resultadoLocal + ' - ' + m.resultadoVisitante
-                            : m.resultadoVisitante + ' - ' + m.resultadoLocal
+                            ? m.visitanteNombre
+                            : m.localNombre
                         }}
-                      </ng-container>
-                      <ng-template #sinResultado>-</ng-template>
-                    </td>
-                  </tr>
-                  <tr *ngIf="!partidosEquipo.length">
-                    <td colspan="4" class="texto-centro texto-muted py-2">
-                      No hay partidos jugados aún
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                      </td>
+                      <td>
+                        {{ m.localId === item.equipoId ? 'Local' : 'Visitante' }}
+                      </td>
+                      <td>
+                        <ng-container
+                          *ngIf="m.resultadoLocal != null && m.resultadoVisitante != null; else sinResultado"
+                        >
+                          {{
+                            m.localId === item.equipoId
+                              ? m.resultadoLocal + ' - ' + m.resultadoVisitante
+                              : m.resultadoVisitante + ' - ' + m.resultadoLocal
+                          }}
+                        </ng-container>
+                        <ng-template #sinResultado>-</ng-template>
+                      </td>
+                    </tr>
+                    <tr *ngIf="!partidosEquipo.length">
+                      <td colspan="4" class="texto-centro texto-muted py-2">
+                        No hay partidos jugados aún
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
 
-              <div class="panel-estadistica">
-                <div
-                  class="grafico-progreso"
-                  [ngStyle]="{ '--porcentaje': item.porcentajeVictorias + '%' }"
-                >
-                  <span class="texto-circular">{{ item.porcentajeVictorias }}%</span>
-                </div>
-                <div class="texto-estadistica">
-                  <strong>Porcentaje de victorias</strong><br />
-                  {{ item.victorias }} victorias / {{ item.derrotas }} derrotas
+                <div class="panel-estadistica">
+                  <div
+                    class="grafico-progreso"
+                    [ngStyle]="{ '--porcentaje': item.porcentajeVictorias + '%' }"
+                  >
+                    <span class="texto-circular">{{ item.porcentajeVictorias }}%</span>
+                  </div>
+                  <div class="texto-estadistica">
+                    <strong>Porcentaje de victorias</strong><br />
+                    {{ item.victorias }} victorias / {{ item.derrotas }} derrotas
+                  </div>
                 </div>
               </div>
-            </div>
-          </td>
-        </tr>
-      </ng-container>
-    </tbody>
-  </table>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
 </div>

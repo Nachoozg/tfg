@@ -1,10 +1,8 @@
-/* ─── Wrapper centrado que limita el ancho al 70% ───────────────────────── */
 .tabla-wrapper {
   max-width: 70%;
   margin: 2rem auto;
 }
 
-/* ─── Sección de título (encabezado + botón) ───────────────────────────── */
 .seccion-titulo {
   display: flex;
   align-items: center;
@@ -35,14 +33,12 @@
   transform: translateY(-1px);
 }
 
-/* ─── Estilo general de la tabla ───────────────────────────────────────── */
 .tabla-partidos {
   width: 100%;
-  border-collapse: separate;   /* necesario para border-spacing */
-  border-spacing: 0 1rem;      /* separación vertical entre filas */
+  border-collapse: separate; 
+  border-spacing: 0 1rem;  
 }
 
-/* ─── Cabecera ─────────────────────────────────────────────────────────── */
 .tabla-partidos thead th {
   background: #333;
   color: #fff;
@@ -57,7 +53,6 @@
   border-top-right-radius: 8px;
 }
 
-/* ─── Filas (body) ─────────────────────────────────────────────────────── */
 .tabla-partidos tbody td {
   background: #f5f6f7;
   padding: 0.75rem 1rem;
@@ -73,12 +68,10 @@
   border-bottom-right-radius: 8px;
 }
 
-/* Ocultar columnas vacías */
 .tabla-partidos tbody td:empty {
   display: none;
 }
 
-/* ─── Botones pequeños ───────────────────────────────────────────────── */
 .btn-sm {
   font-size: 0.85rem;
   padding: 0.3rem 0.8rem;
@@ -102,7 +95,6 @@
   background-color: #c0392b;
 }
 
-/* ─── Botón “Nuevo Partido” ───────────────────────────────────────────── */
 .btn-success {
   background-color: #59c465;
   border-color: #59c465;
@@ -116,9 +108,24 @@
   transform: translateY(-1px);
 }
 
-/* ─── Mensaje “sin datos” ─────────────────────────────────────────────── */
 .row.mt-5 h5 {
   text-align: center;
   color: #666;
   margin-top: 2rem;
+}
+
+
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-responsive .tabla-partidos {
+  min-width: 600px;
+}
+
+@media (min-width: 768px) {
+  .table-responsive {
+    overflow-x: visible;
+  }
 }

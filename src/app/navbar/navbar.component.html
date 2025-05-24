@@ -1,5 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-custom mx-3 my-3 rounded px-3">
   <div class="d-flex w-100 align-items-center justify-content-between">
+
     <a class="navbar-brand d-flex align-items-center pe-3" routerLink="/">
       <img src="/assets/pelotaPaint.png" width="35" height="35" class="imagen">
       <span class="brand-text">Inicio</span>
@@ -18,20 +19,48 @@
 
     <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
       <ul class="navbar-nav mb-2 mb-md-0">
+
         <li class="nav-item"><a class="nav-link" routerLink="/Clasificacion">Clasificación</a></li>
         <li class="nav-item"><a class="nav-link" routerLink="/Colegios">Colegios</a></li>
         <li class="nav-item"><a class="nav-link" routerLink="/Jugadores">Jugadores</a></li>
         <li class="nav-item"><a class="nav-link" routerLink="/Partidos">Partidos</a></li>
+
+        <ng-container *ngIf="!auth.isLogged(); else userMenuMobile">
+          <li class="nav-item d-md-none">
+            <a class="nav-link btn btn-neon w-100 text-center mt-2" routerLink="/login">
+              <i class="bi bi-person-fill me-1"></i>Iniciar sesión
+            </a>
+          </li>
+        </ng-container>
+        <ng-template #userMenuMobile>
+          <li class="nav-item d-md-none dropdown">
+            <a class="nav-link btn btn-neon w-100 text-center mt-2 dropdown-toggle"
+               href="#" role="button"
+               data-bs-toggle="dropdown"
+               aria-expanded="false">
+              <i class="bi bi-person-circle me-1"></i>{{ auth.currentUser?.nombre }}
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <button class="dropdown-item" (click)="openLogoutConfirm()">
+                  Cerrar sesión
+                </button>
+              </li>
+            </ul>
+          </li>
+        </ng-template>
+
       </ul>
     </div>
 
-    <div class="d-flex align-items-center">
-      <ng-container *ngIf="!auth.isLogged(); else userMenu">
-        <a class="btn btn-neon" routerLink="/login">
+    <div class="d-flex align-items-center d-none d-md-flex">
+      <ng-container *ngIf="!auth.isLogged(); else userMenuDesktop">
+        <a class="btn btn-neon"
+           routerLink="/login">
           <i class="bi bi-person-fill me-2"></i>Iniciar sesión
         </a>
       </ng-container>
-      <ng-template #userMenu>
+      <ng-template #userMenuDesktop>
         <div class="dropdown">
           <button
             class="btn btn-neon dropdown-toggle"
@@ -41,10 +70,13 @@
             <i class="bi bi-person-circle me-1"></i>{{ auth.currentUser?.nombre }}
           </button>
           <ul class="dropdown-menu dropdown-menu-end">
-            <li><button class="dropdown-item" (click)="openLogoutConfirm()">Cerrar sesión</button></li>
+            <li>
+              <button class="dropdown-item" (click)="openLogoutConfirm()">Cerrar sesión</button>
+            </li>
           </ul>
         </div>
       </ng-template>
     </div>
+
   </div>
 </nav>

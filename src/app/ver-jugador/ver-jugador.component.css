@@ -67,3 +67,10 @@
 .volver {
   width: 120px;
 }
+
+@media (max-width: 480px) {
+  .perfil-jugador {
+    margin: 2rem 1.5rem;
+    padding: 1.5rem;
+  }
+}

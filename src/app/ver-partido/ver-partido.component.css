@@ -68,3 +68,10 @@
 .boton-volver {
   width: 120px;
 }
+
+@media (max-width: 480px) {
+  .perfil-partido {
+    margin: 2rem 1.5rem;
+    padding: 1.5rem;
+  }
+}

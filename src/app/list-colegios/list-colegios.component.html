@@ -13,8 +13,8 @@
       <tr>
         <th>Nombre</th>
         <th>Número de Jugadores</th>
-        <th></th>
-        <th></th>
+        <th *ngIf="auth.isColegio() || auth.isAdmin()"></th>
+        <th *ngIf="auth.isColegio() || auth.isAdmin()"></th>
       </tr>
     </thead>
     <tbody>

@@ -10,47 +10,49 @@
     </div>
   </div>
   
-  <table *ngIf="listPartidos.length > 0" class="tabla-partidos">
-    <thead>
-      <tr>
-        <th>Fecha</th>
-        <th>Lugar</th>
-        <th>Detalles</th>
-        <th>Resultado</th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let partido of listPartidos">
-        <td>
-          <a [routerLink]="['/verPartido', partido.id]">
-            {{ partido.fecha | date: "dd/MM/yyyy" }}
-          </a>
-        </td>
-        <td>{{ partido.lugar }}</td>
-        <td>{{ partido.detalles }}</td>
-        <td>
-          <span *ngIf="partido.resultadoLocal != null && partido.resultadoVisitante != null">
-            {{ partido.resultadoLocal }} - {{ partido.resultadoVisitante }}
-          </span>
-          <span *ngIf="partido.resultadoLocal == null || partido.resultadoVisitante == null">
-            Partido no jugado aún
-          </span>
-        </td>
-        <td style="width: 10%;">
-          <button [routerLink]="['/editarPartido', partido.id]" class="btn btn-primary btn-sm" *ngIf="auth.isArbitro() || auth.isAdmin()">
-            Editar
-          </button>
-        </td>
-        <td style="width: 10%;">
-          <button (click)="eliminarPartido(partido.id)" class="btn btn-danger btn-sm" *ngIf="auth.isArbitro() || auth.isAdmin()">
-            Eliminar
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="table-responsive">
+    <table *ngIf="listPartidos.length > 0" class="tabla-partidos">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Lugar</th>
+          <th>Detalles</th>
+          <th>Resultado</th>
+          <th *ngIf="auth.isArbitro() || auth.isAdmin()"></th>
+          <th *ngIf="auth.isArbitro() || auth.isAdmin()"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let partido of listPartidos">
+          <td>
+            <a [routerLink]="['/verPartido', partido.id]">
+              {{ partido.fecha | date: "dd/MM/yyyy" }}
+            </a>
+          </td>
+          <td>{{ partido.lugar }}</td>
+          <td>{{ partido.detalles }}</td>
+          <td>
+            <span *ngIf="partido.resultadoLocal != null && partido.resultadoVisitante != null">
+              {{ partido.resultadoLocal }} - {{ partido.resultadoVisitante }}
+            </span>
+            <span *ngIf="partido.resultadoLocal == null || partido.resultadoVisitante == null">
+              Partido no jugado aún
+            </span>
+          </td>
+          <td style="width: 10%;">
+            <button [routerLink]="['/editarPartido', partido.id]" class="btn btn-primary btn-sm" *ngIf="auth.isArbitro() || auth.isAdmin()">
+              Editar
+            </button>
+          </td>
+          <td style="width: 10%;">
+            <button (click)="eliminarPartido(partido.id)" class="btn btn-danger btn-sm" *ngIf="auth.isArbitro() || auth.isAdmin()">
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
   <div *ngIf="listPartidos.length == 0" class="row mt-5">
     <h5>No hay jugadores para mostrar</h5>

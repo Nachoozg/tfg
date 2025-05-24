@@ -16,8 +16,8 @@
                 <th>Nombre y Apellidos</th>
                 <th>Edad</th>
                 <th>Colegio</th>
-                <th></th>
-                <th></th>
+                <th *ngIf="auth.isColegio() || auth.isAdmin()"></th>
+                <th *ngIf="auth.isColegio() || auth.isAdmin()"></th>
             </tr>
         </thead>
         <tbody>
