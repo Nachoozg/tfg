@@ -2,6 +2,13 @@ import { Component, AfterViewInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import * as L from 'leaflet';
 
+delete (L.Icon.Default.prototype as any)._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: 'assets/leaflet-images/marker-icon-2x.png',
+  iconUrl:       'assets/leaflet-images/marker-icon.png',
+  shadowUrl:     'assets/leaflet-images/marker-shadow.png',
+});
+
 @Component({
   selector: 'app-map-dialog',
   standalone: false,

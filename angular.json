@@ -34,7 +34,8 @@
               "src/assets",
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "src/assets/leaflet-images",
+                "output": "assets/leaflet-images"
               }
             ],
             "styles": [
