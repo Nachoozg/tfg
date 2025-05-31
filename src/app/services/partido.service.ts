@@ -7,28 +7,28 @@ import { partido } from '../interfaces/partido';
   providedIn: 'root'
 })
 export class PartidoService {
-    private myAppUrl = 'https://localhost:44372/';
-    private myApiUrl = 'api/Partido/';
-    
-    constructor(private http: HttpClient) { }
 
-    getListPartidos(): Observable<any> {
-      return this.http.get(this.myAppUrl + this.myApiUrl);
-    }
+  private myApiUrl = '/api/Partido/';
 
-    deletePartido(id: number): Observable<any> {
-      return this.http.delete(this.myAppUrl + this.myApiUrl + id);
-    }
+  constructor(private http: HttpClient) { }
 
-    savePartido(partido: partido): Observable<any> {
-      return this.http.post(this.myAppUrl + this.myApiUrl, partido);
-    }
+  getListPartidos(): Observable<partido[]> {
+    return this.http.get<partido[]>(this.myApiUrl);
+  }
 
-    getPartido(id: number): Observable<any> {
-      return this.http.get(this.myAppUrl + this.myApiUrl + id);
-    }
+  getPartido(id: number): Observable<partido> {
+    return this.http.get<partido>(`${this.myApiUrl}${id}`);
+  }
 
-    updatePartido(id: number, partido: partido): Observable<any> {
-      return this.http.put(this.myAppUrl + this.myApiUrl + id, partido);
-    }
+  savePartido(data: partido): Observable<partido> {
+    return this.http.post<partido>(this.myApiUrl, data);
+  }
+
+  updatePartido(id: number, data: partido): Observable<partido> {
+    return this.http.put<partido>(`${this.myApiUrl}${id}`, data);
+  }
+
+  deletePartido(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.myApiUrl}${id}`);
+  }
 }

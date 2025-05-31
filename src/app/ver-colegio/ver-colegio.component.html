@@ -5,7 +5,7 @@
     <h2 class="nombre-colegio">{{ colegio.nombre }}</h2>
     <div class="imagen-colegio" *ngIf="colegio.imagenColegio">
       <img
-        [src]="'https://localhost:44372/' + colegio.imagenColegio"
+        [src]="colegio.imagenColegio"
         alt="{{ colegio.nombre }}"
       />
     </div>

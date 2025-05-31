@@ -7,7 +7,9 @@ import { clasificacion } from '../interfaces/clasificacion';
   providedIn: 'root'
 })
 export class ClasificacionService {
-  private baseUrl = 'https://localhost:44372/api/Clasificacion';
+  // private baseUrl = 'https://localhost:44372/api/Clasificacion';
+  private baseUrl = '/api/Clasificacion';
+
 
   constructor(private http: HttpClient) { }
 

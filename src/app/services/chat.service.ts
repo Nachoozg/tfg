@@ -10,7 +10,8 @@ interface ChatResponse {
   providedIn: 'root'
 })
 export class ChatService {
-  private url = 'https://localhost:44372/api/Chat';
+  // private url = 'https://localhost:44372/api/Chat';
+  private url = '/api/Chat';
 
   constructor(private http: HttpClient) {}
 

@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { colegio } from '../interfaces/colegio';
 
@@ -8,33 +8,31 @@ import { colegio } from '../interfaces/colegio';
 })
 export class ColegioService {
 
-  private myAppUrl = 'https://localhost:44372/';
-  private myApiUrl = 'api/Colegio/';
+  private myApiUrl = '/api/Colegio/';
 
   constructor(private http: HttpClient) { }
 
-  getListColegios(): Observable<any> {
-    return this.http.get(this.myAppUrl + this.myApiUrl);
+  getListColegios(): Observable<colegio[]> {
+    return this.http.get<colegio[]>(this.myApiUrl);
   }
 
-  deleteColegio(id: number): Observable<any> {
-    return this.http.delete(this.myAppUrl + this.myApiUrl + id);
+  getColegio(id: number): Observable<colegio> {
+    return this.http.get<colegio>(`${this.myApiUrl}${id}`);
   }
 
-  saveColegio(colegio: colegio): Observable<any> {
-    return this.http.post(this.myAppUrl + this.myApiUrl, colegio);
+  saveColegio(data: colegio): Observable<colegio> {
+    return this.http.post<colegio>(this.myApiUrl, data);
   }
 
-  getColegio(id: number): Observable<any> {
-    return this.http.get(this.myAppUrl + this.myApiUrl + id);
+  updateColegio(id: number, data: colegio): Observable<colegio> {
+    return this.http.put<colegio>(`${this.myApiUrl}${id}`, data);
   }
 
-  updateColegio(id: number, colegio: colegio): Observable<any> {
-    return this.http.put(this.myAppUrl + this.myApiUrl + id, colegio);
+  deleteColegio(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.myApiUrl}${id}`);
   }
 
   uploadImage(formData: FormData): Observable<any> {
-    return this.http.post(this.myAppUrl + this.myApiUrl + 'upload', formData);
+    return this.http.post<any>(`${this.myApiUrl}upload`, formData);
   }
-  
 }

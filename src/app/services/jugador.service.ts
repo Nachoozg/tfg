@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { jugador } from '../interfaces/jugador';
 import { JugadorEstadisticas } from '../interfaces/jugador-estadisticas';
@@ -9,40 +9,39 @@ import { JugadorEstadisticas } from '../interfaces/jugador-estadisticas';
 })
 export class JugadorService {
 
-  private myAppUrl = 'https://localhost:44372/';
-  private myApiUrl = 'api/Jugador/';
+  private myApiUrl = '/api/Jugador/';
 
   constructor(private http: HttpClient) { }
 
-  getListJugadores(): Observable<any> {
-    return this.http.get(this.myAppUrl + this.myApiUrl);
+  getListJugadores(): Observable<jugador[]> {
+    return this.http.get<jugador[]>(this.myApiUrl);
   }
 
-  deleteJugador(id: number): Observable<any> {
-    return this.http.delete(this.myAppUrl + this.myApiUrl + id);
+  getJugador(id: number): Observable<jugador> {
+    return this.http.get<jugador>(`${this.myApiUrl}${id}`);
   }
 
-  saveJugador(jugador: jugador): Observable<any> {
-    return this.http.post(this.myAppUrl + this.myApiUrl, jugador);
+  saveJugador(data: jugador): Observable<jugador> {
+    return this.http.post<jugador>(this.myApiUrl, data);
   }
 
-  getJugador(id: number): Observable<any> {
-    return this.http.get(this.myAppUrl + this.myApiUrl + id);
+  updateJugador(id: number, data: jugador): Observable<jugador> {
+    return this.http.put<jugador>(`${this.myApiUrl}${id}`, data);
   }
 
-  updateJugador(id: number, jugador: jugador): Observable<any> {
-    return this.http.put(this.myAppUrl + this.myApiUrl + id, jugador);
+  deleteJugador(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.myApiUrl}${id}`);
   }
 
   getJugadoresPorColegio(colegioId: number): Observable<jugador[]> {
-    return this.http.get<jugador[]>(`${this.myAppUrl}api/Jugador/colegio/${colegioId}`);
-  }
-  
-  uploadImage(formData: FormData): Observable<any> {
-    return this.http.post(this.myAppUrl + this.myApiUrl + 'upload', formData);
+    return this.http.get<jugador[]>(`/api/Jugador/colegio/${colegioId}`);
   }
 
-  getStatsJugador(id: number) {
-  return this.http.get<JugadorEstadisticas>(`${this.myAppUrl}api/EstadisticasJugador/jugador/${id}`);
+  uploadImage(formData: FormData): Observable<any> {
+    return this.http.post<any>(`${this.myApiUrl}upload`, formData);
+  }
+
+  getStatsJugador(id: number): Observable<JugadorEstadisticas> {
+    return this.http.get<JugadorEstadisticas>(`/api/EstadisticasJugador/jugador/${id}`);
   }
 }

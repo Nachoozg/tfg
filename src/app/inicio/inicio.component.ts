@@ -70,7 +70,7 @@ export class InicioComponent implements OnInit {
             this._colegioService.getColegio(p.localId).toPromise(),
             this._colegioService.getColegio(p.visitanteId).toPromise()
           ]).then(([local, visitante]) => ({
-            id: p.id!,
+            id:    p.id!.toString(),
             title: `${local?.nombre || 'Local'} vs ${visitante?.nombre || 'Visitante'}`,
             date: p.fecha
           }))

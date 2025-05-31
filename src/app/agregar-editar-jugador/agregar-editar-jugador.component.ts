@@ -63,7 +63,8 @@ export class AgregarEditarJugadorComponent implements OnInit {
           colegio: data.colegioId
         });
         if (data.imagenJugador) {
-          this.imagenPreview = "https://localhost:44372/" + data.imagenJugador;
+          // this.imagenPreview = "https://localhost:44372/" + data.imagenJugador;
+          this.imagenPreview = data.imagenJugador;
         }
       }, error => {
         console.log(error);

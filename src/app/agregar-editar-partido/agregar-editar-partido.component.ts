@@ -83,7 +83,7 @@ export class AgregarEditarPartidoComponent implements OnInit {
         this.jugadoresLocal = all.filter((j: jugador) =>
           j.colegioId === +colegioId
         );
-        this.agregarPartido.get('jugadorLocalId')!.setValue(null);
+        // this.agregarPartido.get('jugadorLocalId')!.setValue(null);
       });
   }
 
@@ -97,7 +97,7 @@ export class AgregarEditarPartidoComponent implements OnInit {
         this.jugadoresVisitante = all.filter((j: jugador) =>
           j.colegioId === +colegioId
         );
-        this.agregarPartido.get('jugadorVisitanteId')!.setValue(null);
+        // this.agregarPartido.get('jugadorVisitanteId')!.setValue(null);
       });
   }
 

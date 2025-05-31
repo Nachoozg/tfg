@@ -7,7 +7,9 @@ import { usuario } from '../interfaces/usuario';
   providedIn: 'root'
 })
 export class UsuarioService {
-  private baseUrl: string = 'https://localhost:44372/api/Usuario';
+  // private baseUrl: string = 'https://localhost:44372/api/Usuario';
+  private baseUrl: string = '/api/Usuario';
+
 
   constructor(private http: HttpClient) { }
 

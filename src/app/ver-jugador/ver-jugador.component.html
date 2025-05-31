@@ -5,7 +5,7 @@
     <h2 class="nombre-jugador">{{ jugador.nombre }} {{ jugador.apellidos }}</h2>
     <div class="imagen-jugador" *ngIf="jugador.imagenJugador">
       <img
-        [src]="'https://localhost:44372/' + jugador.imagenJugador"
+        [src]="jugador.imagenJugador"
         alt="{{ jugador.nombre }}"
       />
     </div>

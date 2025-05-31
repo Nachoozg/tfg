@@ -46,7 +46,8 @@ export class AgregarEditarColegioComponent implements OnInit {
           numeroJugadores: data.numeroJugadores
         });
         if(data.imagenColegio) {
-          this.imagenPreview = "https://localhost:44372/" + data.imagenColegio;
+          // this.imagenPreview = "https://localhost:44372/" + data.imagenColegio;
+          this.imagenPreview = data.imagenColegio;
         }
       }, error => {
         console.log(error);

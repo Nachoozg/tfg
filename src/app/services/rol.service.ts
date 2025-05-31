@@ -9,7 +9,9 @@ export interface Rol {
 
 @Injectable({ providedIn: 'root' })
 export class RolService {
-  private baseUrl = 'https://localhost:44372/api/Rol';
+  // private baseUrl = 'https://localhost:44372/api/Rol';
+  private baseUrl = '/api/Rol';
+
   constructor(private http: HttpClient) {}
   getRoles(): Observable<Rol[]> {
     return this.http.get<Rol[]>(this.baseUrl);
